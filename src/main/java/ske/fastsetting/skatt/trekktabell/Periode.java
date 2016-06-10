@@ -18,6 +18,7 @@ public enum Periode {
     public final int    avrunding;
     public final int    avrundingStandardfradrag;
 
+    private final int avrundingSjo = 100;
 
     private Periode(double inntektsPeriode, double trekkPeriode,
                     double inntektsPeriodePensjon, double trekkPeriodePensjon,
@@ -51,6 +52,8 @@ public enum Periode {
 
     public int getAvrunding(Tabellnummer tabellnummer) {
         if (tabellnummer.type.equals("Vanlig")) return avrunding;
+        if (tabellnummer.type.equals("Sjo")) return avrundingSjo;
+
         return avrundingStandardfradrag;
     }
 
