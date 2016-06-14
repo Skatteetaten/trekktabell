@@ -1,6 +1,7 @@
 package ske.fastsetting.skatt.trekktabell;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -18,4 +19,14 @@ public class TrekkrutineTest {
         assertEquals(0L, beregnetTrekk);
 
     }
+
+    @Test
+    public void skal_returnere_trekk_mindre_eller_lik_trekkgrunnlag_() throws Exception {
+        for (long trekkgrunnlag = 1000L; trekkgrunnlag <  100000L; trekkgrunnlag +=188) {
+            long beregnetTrekk = Trekkrutine.beregnTrekkForLonn(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, trekkgrunnlag);
+            assertTrue(trekkgrunnlag >= beregnetTrekk);
+        }
+    }
+
+
 }
