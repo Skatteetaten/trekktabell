@@ -1,29 +1,55 @@
 package ske.fastsetting.skatt.trekktabell;
 
-/**
- * Created by x00pjr on 09.06.16.
- */
 public enum Tabellnummer {
-    TABELL_7100("7100", "Vanlig", 0, Konstanter.KLASSE1_VANLIG),
-    TABELL_7101("7101", "Vanlig", 4000, Konstanter.KLASSE1_VANLIG),
-    TABELL_7102("7102", "Vanlig", 8000, Konstanter.KLASSE1_VANLIG),
-    TABELL_7103("7103", "Vanlig", 12000, Konstanter.KLASSE1_VANLIG),
-    TABELL_7200("7200", "Vanlig", 0, Konstanter.KLASSE2_VANLIG),
-    TABELL_7300("7300", "Standardfradrag", 0, Konstanter.KLASSE1_VANLIG),
-    TABELL_6300("6300", "Finnmark", 0, Konstanter.KLASSE1_FINNMARK),
-    TABELL_0100("0100", "Sjø" ,0, Konstanter.KLASSE1_VANLIG);
+    TABELL_7100(Tabelltype.VANLIG, 0, Konstanter.KLASSE1_VANLIG, "Høy"),
+    TABELL_7101(Tabelltype.VANLIG, 4000, Konstanter.KLASSE1_VANLIG, "Høy"),
+    TABELL_7102(Tabelltype.VANLIG, 8000, Konstanter.KLASSE1_VANLIG, "Høy"),
+    TABELL_7103(Tabelltype.VANLIG, 12000, Konstanter.KLASSE1_VANLIG, "Høy"),
+    TABELL_7100P(Tabelltype.PENSJONIST, 0, Konstanter.KLASSE2_VANLIG, "Lav"),
+    TABELL_7200(Tabelltype.VANLIG, 0, Konstanter.KLASSE2_VANLIG, "Høy"),
+    TABELL_7300(Tabelltype.STANDARDFRADRAG, 0, Konstanter.KLASSE1_VANLIG, "Høy"),
+    TABELL_6300(Tabelltype.FINNMARK, 0, Konstanter.KLASSE1_FINNMARK, "Høy"),
+    TABELL_6400(Tabelltype.FINNMARK, 0, Konstanter.KLASSE2_FINNMARK, "Høy"),
+    TABELL_0100(Tabelltype.SJØ, 0, Konstanter.KLASSE1_VANLIG, "Ingen");
 
-    public final String tabellnr;
-    public final String type;
+    public final Tabelltype tabelltype;
     public final int tabellFradrag;
     public final double klasseFradrag;
+    public final String trygdeavgiftstype;
 
-    private Tabellnummer(String tabellnr, String type, int tabellFradrag, double klasseFradrag) {
-        this.tabellnr = tabellnr;
-        this.type     = type;
+    private Tabellnummer(Tabelltype tabelltype, int tabellFradrag, double klasseFradrag, String trygdeavgiftstype) {
+        this.tabelltype = tabelltype;
         this.tabellFradrag = tabellFradrag;
         this.klasseFradrag = klasseFradrag;
+        this.trygdeavgiftstype = trygdeavgiftstype;
+    }
+    public boolean isVanlig() {
+        return (tabelltype == Tabelltype.VANLIG) ? true : false;
+    }
+    public boolean isPensjonist() {
+        return (tabelltype == Tabelltype.PENSJONIST) ? true : false;
+    }
+    public boolean isFinnmark() {
+        return (tabelltype == Tabelltype.FINNMARK) ? true : false;
+    }
+    public boolean isStandardFradrag() {
+        return (tabelltype == Tabelltype.STANDARDFRADRAG ||
+                tabelltype == Tabelltype.SJØ ||
+                tabelltype == Tabelltype.FINNMARK ) ? true : false;
+    }
+    public boolean isSjo() {
+        return (tabelltype == Tabelltype.PENSJONIST) ? true : false;
     }
 
+    public boolean ikkeTrygdeavgift() {
+        return trygdeavgiftstype.equals("Ingen") ? true : false;
+    }
+
+    public boolean lavSatsTrygdeavgift() {
+        return trygdeavgiftstype.equals("Lav") ? true : false;
+    }
+    public boolean hoySatsTrygdeavgift() {
+        return trygdeavgiftstype.equals("Høy") ? true : false;
+    }
 
 }

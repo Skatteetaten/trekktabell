@@ -36,23 +36,23 @@ public enum Periode {
     }
 
 
-    public double getInntektsPeriode(Tabellnummer tabellnummer, boolean pensjon) {
+    public double getInntektsPeriode(Tabellnummer tabellnummer) {
 
-        if (pensjon) return inntektsPeriodePensjon;
-        if (tabellnummer.type.equals("Vanlig")) return inntektsPeriode;
+        if (tabellnummer.isPensjonist()) return inntektsPeriodePensjon;
+        if (tabellnummer.isVanlig()) return inntektsPeriode;
         return inntektsPeriodeStandardfradrag;
     }
 
     public double getTrekkPeriode(Tabellnummer tabellnummer, boolean pensjon) {
 
-        if (pensjon) return trekkPeriodePensjon;
-        if (tabellnummer.type.equals("Vanlig")) return trekkPeriode;
+        if (tabellnummer.isPensjonist()) return trekkPeriodePensjon;
+        if (tabellnummer.isVanlig()) return trekkPeriode;
         return trekkPeriodeStandardfradrag;
     }
 
     public int getAvrunding(Tabellnummer tabellnummer) {
-        if (tabellnummer.type.equals("Vanlig")) return avrunding;
-        if (tabellnummer.type.equals("Sjo")) return avrundingSjo;
+        if (tabellnummer.isVanlig() || tabellnummer.isPensjonist()) return avrunding;
+        if (tabellnummer.isSjo()) return avrundingSjo;
 
         return avrundingStandardfradrag;
     }

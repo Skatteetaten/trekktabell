@@ -1,8 +1,5 @@
 package ske.fastsetting.skatt.trekktabell;
 
-/**
- * Created by x00pjr on 10.06.16.
- */
 public class Konstanter {
 
     /**

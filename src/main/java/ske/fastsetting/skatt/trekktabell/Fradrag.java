@@ -1,15 +1,13 @@
 package ske.fastsetting.skatt.trekktabell;
 
-/**
- * Created by x00pjr on 14.06.16.
- */
+
 public class Fradrag {
 
-    public static double beregnMinsteFradrag(Tabellnummer tabellnummer, double personInntektAar, boolean pensjon) {
+    public static double beregnMinsteFradrag(Tabellnummer tabellnummer, double personInntektAar) {
 
-        if (pensjon) return beregnMinstefradragPensjon(personInntektAar);
+        if (tabellnummer.isPensjonist()) return beregnMinstefradragPensjon(personInntektAar);
 
-        if (tabellnummer.type.equals("Sjo")) return beregnMinstefradragSjo(personInntektAar);
+        if (tabellnummer.isSjo()) return beregnMinstefradragSjo(personInntektAar);
 
         return beregnMinstefradragVanlig(personInntektAar);
     }
@@ -66,20 +64,18 @@ public class Fradrag {
     }
 
     public static double beregnStandardFradrag(Tabellnummer tabellnummer, double personInntektAar) {
-        if (tabellnummer.type.equals("Vanlig")) return 0d;
+        if (!tabellnummer.isStandardFradrag()) return 0d;
 
         double standardFradrag = (personInntektAar * Konstanter.STFRADRAG_PROSENT) / 100;
         return (standardFradrag > Konstanter.MAX_STFRADRAG) ? Konstanter.MAX_STFRADRAG : standardFradrag;
     }
 
-    public static double beregnSjoFradrag(Tabellnummer tabellnummer, double personInntektAar, boolean pensjon) {
-        if (!tabellnummer.type.equals("Sjø")) return 0d;
+    public static double beregnSjoFradrag(Tabellnummer tabellnummer, double personInntektAar) {
+        if (!tabellnummer.isSjo()) return 0d;
 
         double sjoFradrag = (personInntektAar * Konstanter.SJO_PROSENT) / 100;
         return (sjoFradrag > Konstanter.MAX_SJO_FRADRAG) ? Konstanter.MAX_SJO_FRADRAG : sjoFradrag;
     }
-
-
 
 
 }
