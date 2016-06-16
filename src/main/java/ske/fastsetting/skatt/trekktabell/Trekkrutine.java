@@ -5,6 +5,11 @@ public class Trekkrutine {
 
     public static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
 
+        System.out.println("- - - - - - - - - " + tabellnummer.toString() + " - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+
+        // TODO: 16.06.16 Bør antakelig finne avrundet trekkgrunnlag først, og også begrenset til max-trekkgrunnlag
+        // TODO: 16.06.16 Og må finne overskytende trekk
+        
         double personInntektAar = finnAarsInntekt(tabellnummer, periode, trekkgrunnlag);
 
         System.out.println("person-inntekt-år = " + personInntektAar);
@@ -13,17 +18,23 @@ public class Trekkrutine {
 
         System.out.println("AlmInntÅr = " + alminneligInntektAar);
 
-        double skatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
+        double sumSkatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
 
-        return 2;
+        System.out.println("SumSkatt = " + sumSkatt);
+
+        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt);
+
+        System.out.println("Trekk = " + trekk);
+        // TODO: 16.06.16 trekket skal ikke være > avrundet trekkgrunnlag 
+
+        return trekk;
     }
-
 
 
     public static void main(String[] args) {
         System.out.println("Main starter opp");
 
-        long trekk = beregnTrekk(Tabellnummer.TABELL_7101, Periode.PERIODE_1_MAANED, 70022L);
+        long trekk = beregnTrekk(Tabellnummer.TABELL_7100P, Periode.PERIODE_14_DAGER, 20000L);
 
         //long trekk2 = beregnTrekk(Tabellnummer.TABELL_7300, Periode.PERIODE_1_MAANED, 7599L);
 
@@ -88,8 +99,13 @@ public class Trekkrutine {
 
     }
 
-    private static long beregnTrekk(String tabellnummer, Periode periode, double skatt) {
-        return 0L;
+    private static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, double sumSkatt) {
+        double trekkMedDesimaler = sumSkatt / periode.getTrekkPeriode(tabellnummer);
+        System.out.println("trekkMedDesimaler = " + trekkMedDesimaler);
+        long trekkUtenDesimaler = Math.round(trekkMedDesimaler);
+        System.out.println("trekkUtenDesimaler = " + trekkUtenDesimaler);
+
+        return trekkUtenDesimaler;
     }
 
 

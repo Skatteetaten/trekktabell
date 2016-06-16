@@ -43,7 +43,7 @@ public enum Periode {
         return inntektsPeriodeStandardfradrag;
     }
 
-    public double getTrekkPeriode(Tabellnummer tabellnummer, boolean pensjon) {
+    public double getTrekkPeriode(Tabellnummer tabellnummer) {
 
         if (tabellnummer.isPensjonist()) return trekkPeriodePensjon;
         if (tabellnummer.isVanlig()) return trekkPeriode;

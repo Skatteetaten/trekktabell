@@ -5,7 +5,7 @@ public enum Tabellnummer {
     TABELL_7101(Tabelltype.VANLIG, 4000, Konstanter.KLASSE1_VANLIG, "Høy"),
     TABELL_7102(Tabelltype.VANLIG, 8000, Konstanter.KLASSE1_VANLIG, "Høy"),
     TABELL_7103(Tabelltype.VANLIG, 12000, Konstanter.KLASSE1_VANLIG, "Høy"),
-    TABELL_7100P(Tabelltype.PENSJONIST, 0, Konstanter.KLASSE2_VANLIG, "Lav"),
+    TABELL_7100P(Tabelltype.PENSJONIST, 0, Konstanter.KLASSE1_VANLIG, "Lav"),
     TABELL_7200(Tabelltype.VANLIG, 0, Konstanter.KLASSE2_VANLIG, "Høy"),
     TABELL_7300(Tabelltype.STANDARDFRADRAG, 0, Konstanter.KLASSE1_VANLIG, "Høy"),
     TABELL_6300(Tabelltype.FINNMARK, 0, Konstanter.KLASSE1_FINNMARK, "Høy"),

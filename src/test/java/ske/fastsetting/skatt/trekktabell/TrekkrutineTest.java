@@ -17,7 +17,6 @@ public class TrekkrutineTest {
     public void skal_returnere_XXX_ved_tabelltype_pensjon_() throws Exception {
         long beregnetTrekk = Trekkrutine.beregnTrekk(Tabellnummer.TABELL_7100P, Periode.PERIODE_1_MAANED, 0L);
         assertEquals(0L, beregnetTrekk);
-
     }
 
     @Test
