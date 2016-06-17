@@ -16,6 +16,8 @@ public enum Tabellnummer {
     public final int tabellFradrag;
     public final double klasseFradrag;
     public final String trygdeavgiftstype;
+    // TODO: 17.06.16 Legg inn overskytende prosent pr tabell 
+    
 
     private Tabellnummer(Tabelltype tabelltype, int tabellFradrag, double klasseFradrag, String trygdeavgiftstype) {
         this.tabelltype = tabelltype;
@@ -52,4 +54,12 @@ public enum Tabellnummer {
         return trygdeavgiftstype.equals("Høy") ? true : false;
     }
 
+    public int overskytendeProsent() {
+        if (tabelltype == Tabelltype.VANLIG) return Konstanter.OVERSKYTENDE_PROSENT_VANLIG;
+        if (tabelltype == Tabelltype.PENSJONIST) return Konstanter.OVERSKYTENDE_PROSENT_PENSJONIST;
+        
+
+
+        return 0;
+    }
 }

@@ -7,10 +7,11 @@ public class Trekkrutine {
 
         System.out.println("- - - - - - - - - " + tabellnummer.toString() + " - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
+        long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(tabellnummer, periode, trekkgrunnlag);
         // TODO: 16.06.16 Bør antakelig finne avrundet trekkgrunnlag først, og også begrenset til max-trekkgrunnlag
         // TODO: 16.06.16 Og må finne overskytende trekk
-        
-        double personInntektAar = finnAarsInntekt(tabellnummer, periode, trekkgrunnlag);
+
+        double personInntektAar = avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer);
 
         System.out.println("person-inntekt-år = " + personInntektAar);
 
@@ -43,17 +44,11 @@ public class Trekkrutine {
 
     }
 
-    /*
-    Finner brutto årsinntekt (personInntekt)
-    */
-    private static double finnAarsInntekt(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
-        System.out.println("finnAarsInntekt kjører, trekkgrunnlag = " + trekkgrunnlag);
+    private static long finnAvrundetTrekkgrunnlag(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
         int avrunding = periode.getAvrunding(tabellnummer);
-        long avrundetTrekkgrunnlag = (trekkgrunnlag / avrunding * avrunding) + (avrunding / 2);
-        System.out.println("finnAarsInntekt kjører, Avrundet trekkgrunnlag = " + avrundetTrekkgrunnlag);
-
-        return avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer);
+        return (trekkgrunnlag / avrunding * avrunding) + (avrunding / 2);
     }
+
 
     /*
     Finner netto årsinntekt (alminneligInntekt)

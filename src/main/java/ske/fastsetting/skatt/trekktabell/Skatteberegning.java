@@ -75,4 +75,13 @@ public class Skatteberegning {
         return trygdeavgift;
     }
 
+    public static double beregnOverskytendeTrekk(Tabellnummer tabellnummer, Periode periode, double trekkgrunnlag) {
+
+        if (periode.maxTrekkgrunnlag > trekkgrunnlag) return 0d;
+
+        // TODO: 17.06.16 finn overskytende trekket
+
+        return trygdeavgift;
+    }
+
 }

@@ -6,11 +6,9 @@ public class Konstanter {
      * Inntektsåret dette systemet gjelder for.
      */
     public static final int AAR = 2016;
-
-    /**
-     * Forskjellige tilstander vi kan befinne oss i i konversasjonen med bruker.
+    /*
+    Skattesatser for 2016
      */
-
     public static final double
             KLASSE1_VANLIG = 51750d,
             KLASSE2_VANLIG = 76250d,
@@ -48,6 +46,23 @@ public class Konstanter {
             ANV_LONNSFRADRAG = 27984d,
             SJO_PROSENT = 30d,
             MAX_SJO_FRADRAG = 80000d;
+
+    /*
+    Det som avgjør den overskytende prosenten er hva som som betales i trygdeavgift, antall trekkmåneder og om det skal benyttes finnmark-satser eller ikke.
+     */
+    public static final int
+            OVERSKYTENDE_PROSENT_VANLIG = 54,
+            OVERSKYTENDE_PROSENT_PENSJONIST = 48,
+            OVERSKYTENDE_PROSENT_HOY_TRYGDEAVG_10_5 = 54,           // 7300, 7400,
+            OVERSKYTENDE_PROSENT_HOY_TRYGDEAVG_12 = 47,             // 7350, 7450, 7150, 7250, 0101, 0201
+            OVERSKYTENDE_PROSENT_IKKE_TRYGDEAVG_10_5 = 44,          // 7550, 7650, 7170, 7270
+            OVERSKYTENDE_PROSENT_IKKE_TRYGDEAVG_12 = 39,            // 7500, 7600, 0100, 0200, 7160, 7260
+            OVERSKYTENDE_PROSENT_LAV_TRYGDEAVG_12 = 44,             // 7700, 7800,
+            OVERSKYTENDE_PROSENT_HOY_TRYGDEAVG_10_5_FINNMARK = 50,  // 6300, 6400
+            OVERSKYTENDE_PROSENT_HOY_TRYGDEAVG_12_FINNMARK = 43,    // 6350, 6450
+            OVERSKYTENDE_PROSENT_IKKE_TRYGDEAVG_10_5_FINNMARK = 40, // 6550, 6650
+            OVERSKYTENDE_PROSENT_IKKE_TRYGDEAVG_12_FINNMARK = 35,   // 6500, 6600
+            OVERSKYTENDE_PROSENT_LAV_TRYGDEAVG_12_FINNMARK = 40;    // 6700, 6800
 
 }
 
