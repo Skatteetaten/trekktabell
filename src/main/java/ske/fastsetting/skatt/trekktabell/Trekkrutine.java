@@ -8,8 +8,14 @@ public class Trekkrutine {
         System.out.println("- - - - - - - - - " + tabellnummer.toString() + " - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
         long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(tabellnummer, periode, trekkgrunnlag);
-        // TODO: 16.06.16 Bør antakelig finne avrundet trekkgrunnlag først, og også begrenset til max-trekkgrunnlag
-        // TODO: 16.06.16 Og må finne overskytende trekk
+
+        System.out.println("avrundetTrekkgrunnlag = " + avrundetTrekkgrunnlag);
+
+        long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
+
+        System.out.println("Overskytende trekk = " + overskytendeTrekk);
+
+        if (overskytendeTrekk > 0) avrundetTrekkgrunnlag = periode.maxTrekkgrunnlag;
 
         double personInntektAar = avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer);
 
@@ -23,10 +29,11 @@ public class Trekkrutine {
 
         System.out.println("SumSkatt = " + sumSkatt);
 
-        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt);
+        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt) + overskytendeTrekk;
 
         System.out.println("Trekk = " + trekk);
-        // TODO: 16.06.16 trekket skal ikke være > avrundet trekkgrunnlag 
+
+        if (trekk > trekkgrunnlag) trekk = trekkgrunnlag;
 
         return trekk;
     }
@@ -35,12 +42,9 @@ public class Trekkrutine {
     public static void main(String[] args) {
         System.out.println("Main starter opp");
 
-        long trekk = beregnTrekk(Tabellnummer.TABELL_7100P, Periode.PERIODE_14_DAGER, 20000L);
+        long trekk = beregnTrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 80000L);
 
-        //long trekk2 = beregnTrekk(Tabellnummer.TABELL_7300, Periode.PERIODE_1_MAANED, 7599L);
-
-        System.out.println("Main : Trekket blir : " + trekk);
-        System.out.println("Main avslutter");
+        System.out.println("Main avslutter, Trekket blir : " + trekk);
 
     }
 
