@@ -42,14 +42,14 @@ public class Trekkrutine {
     public static void main(String[] args) {
         System.out.println("Main starter opp");
 
-        long trekk = beregnTrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 80000L);
+        long trekk = beregnTrekk(Tabellnummer.TABELL_7160, Periode.PERIODE_14_DAGER, 40000L);
 
         System.out.println("Main avslutter, Trekket blir : " + trekk);
 
     }
 
     private static long finnAvrundetTrekkgrunnlag(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
-        int avrunding = periode.getAvrunding(tabellnummer);
+        int avrunding = periode.avrunding;
         return (trekkgrunnlag / avrunding * avrunding) + (avrunding / 2);
     }
 

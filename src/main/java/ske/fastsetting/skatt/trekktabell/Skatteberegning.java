@@ -10,7 +10,7 @@ public class Skatteberegning {
         if (alminneligInntektAar < 0)
             return 0d;
 
-        return tabellnummer.isFinnmark() ? alminneligInntektAar * Konstanter.FELLES_SKATT_FINNMARK / 100 :
+        return tabellnummer.tabelltype == Tabelltype.FINNMARK ? alminneligInntektAar * Konstanter.FELLES_SKATT_FINNMARK / 100 :
                 alminneligInntektAar * Konstanter.FELLES_SKATT_VANLIG / 100;
     }
 
@@ -19,7 +19,7 @@ public class Skatteberegning {
             return 0d;
 
         double prosentTrinn3 = 0d;
-        if (tabellnummer.isFinnmark())
+        if (tabellnummer.tabelltype == Tabelltype.FINNMARK)
             prosentTrinn3 = Konstanter.TRINNSKATT_PROSENT3_FINNMARK;
         else
             prosentTrinn3 = Konstanter.TRINNSKATT_PROSENT3;
@@ -65,6 +65,7 @@ public class Skatteberegning {
                 trygdeavgift = personInntektAar * Konstanter.LAV_TRYGDEAVG_PROSENT / 100;
             else
                 trygdeavgift = (personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100;
+            return trygdeavgift;
         }
         if (personInntektAar > Konstanter.HOY_GRENSE_TRYGDEAVGIFT)
             trygdeavgift = personInntektAar * Konstanter.HOY_TRYGDEAVG_PROSENT / 100;

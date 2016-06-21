@@ -5,9 +5,9 @@ public class Fradrag {
 
     public static double beregnMinsteFradrag(Tabellnummer tabellnummer, double personInntektAar) {
 
-        if (tabellnummer.isPensjonist()) return beregnMinstefradragPensjon(personInntektAar);
+        if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) return beregnMinstefradragPensjon(personInntektAar);
 
-        if (tabellnummer.isSjo()) return beregnMinstefradragSjo(personInntektAar);
+        if (tabellnummer.tabelltype == Tabelltype.SJØ) return beregnMinstefradragSjo(personInntektAar);
 
         return beregnMinstefradragVanlig(personInntektAar);
     }
@@ -71,7 +71,7 @@ public class Fradrag {
     }
 
     public static double beregnSjoFradrag(Tabellnummer tabellnummer, double personInntektAar) {
-        if (!tabellnummer.isSjo()) return 0d;
+        if (tabellnummer.tabelltype != Tabelltype.SJØ ) return 0d;
 
         double sjoFradrag = (personInntektAar * Konstanter.SJO_PROSENT) / 100;
         return (sjoFradrag > Konstanter.MAX_SJO_FRADRAG) ? Konstanter.MAX_SJO_FRADRAG : sjoFradrag;

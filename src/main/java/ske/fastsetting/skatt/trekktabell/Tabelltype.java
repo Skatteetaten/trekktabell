@@ -5,6 +5,7 @@ public enum Tabelltype {
     PENSJONIST,
     STANDARDFRADRAG,
     SJØ,
-    FINNMARK;
+    FINNMARK,
+    SPESIAL;
 
 }
