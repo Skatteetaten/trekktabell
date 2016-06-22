@@ -28,14 +28,12 @@ public class Skatteberegning {
 
         if (personInntektAar < Konstanter.TRINN2) {
             trinnskatt = (personInntektAar - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100;
-            System.out.println("Trinnskatt1 : " + trinnskatt);
             return trinnskatt;
         }
 
         if (personInntektAar < Konstanter.TRINN3) {
             trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                     + ((personInntektAar - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100);
-            System.out.println("Trinnskatt2 : " + trinnskatt);
             return trinnskatt;
         }
 
@@ -43,14 +41,12 @@ public class Skatteberegning {
             trinnskatt =  ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                     + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
                     + ((personInntektAar - Konstanter.TRINN3) * prosentTrinn3 / 100);
-            System.out.println("Trinnskatt3 : " + trinnskatt);
             return trinnskatt;
         }
         trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                 + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
                 + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
                 + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100);
-        System.out.println("Trinnskatt4 : " + trinnskatt);
         return trinnskatt;
     }
 

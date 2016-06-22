@@ -42,7 +42,7 @@ public class Trekkrutine {
     public static void main(String[] args) {
         System.out.println("Main starter opp");
 
-        long trekk = beregnTrekk(Tabellnummer.TABELL_7160, Periode.PERIODE_14_DAGER, 40000L);
+        long trekk = beregnTrekk(Tabellnummer.TABELL_7233, Periode.PERIODE_1_MAANED, 79700L);
 
         System.out.println("Main avslutter, Trekket blir : " + trekk);
 
