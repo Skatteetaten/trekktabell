@@ -5,33 +5,33 @@ public class Trekkrutine {
 
     public static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
 
-        System.out.println("- - - - - - - - - " + tabellnummer.toString() + " - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        //System.out.println("- - - - - - - - - " + tabellnummer.toString() + " - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
         long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(tabellnummer, periode, trekkgrunnlag);
 
-        System.out.println("avrundetTrekkgrunnlag = " + avrundetTrekkgrunnlag);
+        //System.out.println("avrundetTrekkgrunnlag = " + avrundetTrekkgrunnlag);
 
         long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
 
-        System.out.println("Overskytende trekk = " + overskytendeTrekk);
+        //System.out.println("Overskytende trekk = " + overskytendeTrekk);
 
         if (overskytendeTrekk > 0) avrundetTrekkgrunnlag = periode.maxTrekkgrunnlag;
 
         double personInntektAar = avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer);
 
-        System.out.println("person-inntekt-år = " + personInntektAar);
+        //System.out.println("person-inntekt-år = " + personInntektAar);
 
         double alminneligInntektAar = finnAlminneligInntektAar(tabellnummer, personInntektAar);
 
-        System.out.println("AlmInntÅr = " + alminneligInntektAar);
+        //System.out.println("AlmInntÅr = " + alminneligInntektAar);
 
         double sumSkatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
 
-        System.out.println("SumSkatt = " + sumSkatt);
+        //System.out.println("SumSkatt = " + sumSkatt);
 
         long trekk = beregnTrekk(tabellnummer, periode, sumSkatt) + overskytendeTrekk;
 
-        System.out.println("Trekk = " + trekk);
+        //System.out.println("Trekk = " + trekk);
 
         if (trekk > trekkgrunnlag) trekk = trekkgrunnlag;
 
@@ -40,11 +40,13 @@ public class Trekkrutine {
 
 
     public static void main(String[] args) {
-        System.out.println("Main starter opp");
+        Tabellnummer t = Tabellnummer.TABELL_0100;
+        Periode p = Periode.PERIODE_14_DAGER;
+        long grl = 36850L;
 
-        long trekk = beregnTrekk(Tabellnummer.TABELL_7233, Periode.PERIODE_1_MAANED, 79700L);
+        long trekk = beregnTrekk(t, p, grl);
 
-        System.out.println("Main avslutter, Trekket blir : " + trekk);
+        //System.out.println("Resultat: " + t.toString() + " " + p.toString() + " " + grl + " " + trekk);
 
     }
 
@@ -61,11 +63,11 @@ public class Trekkrutine {
         double minsteFradrag = Fradrag.beregnMinsteFradrag(tabellnummer, personInntektAar);
         double standardFradrag = Fradrag.beregnStandardFradrag(tabellnummer, personInntektAar);
         double sjoFradrag = Fradrag.beregnSjoFradrag(tabellnummer, personInntektAar);
-        System.out.println("Minstefradrag = " + minsteFradrag);
-        System.out.println("standardFradrag=" + standardFradrag);
-        System.out.println("sjøFradrag=" + sjoFradrag);
-        System.out.println("tabellfradrag ==" + tabellnummer.tabellFradrag);
-        System.out.println("klassefradrag ==" + tabellnummer.klasseFradrag);
+        //System.out.println("Minstefradrag = " + minsteFradrag);
+        //System.out.println("standardFradrag=" + standardFradrag);
+        //System.out.println("sjøFradrag=" + sjoFradrag);
+        //System.out.println("tabellfradrag ==" + tabellnummer.tabellFradrag);
+        //System.out.println("klassefradrag ==" + tabellnummer.klasseFradrag);
 
         return personInntektAar
                 - minsteFradrag
@@ -80,19 +82,19 @@ public class Trekkrutine {
 
         double kommuneskatt = Skatteberegning.beregnKommuneskatt(alminneligInntektAar);
 
-        System.out.println("Kommuneskatt = " + kommuneskatt);
+        //System.out.println("Kommuneskatt = " + kommuneskatt);
 
         double fellesskatt = Skatteberegning.beregnFelleseskatt(tabellnummer, alminneligInntektAar);
 
-        System.out.println("FellesSkatt = " + fellesskatt);
+        //System.out.println("FellesSkatt = " + fellesskatt);
 
         double trinnskatt = Skatteberegning.beregnTrinnskatt(tabellnummer, personInntektAar);
 
-        System.out.println("Trinnskatt = " + trinnskatt);
+        //System.out.println("Trinnskatt = " + trinnskatt);
 
         double trygdeavgift = Skatteberegning.beregnTrygdeavgift(tabellnummer, personInntektAar);
 
-        System.out.println("Trygdeagift = " + trygdeavgift);
+        //System.out.println("Trygdeagift = " + trygdeavgift);
 
         return kommuneskatt + fellesskatt + trinnskatt + trygdeavgift;
 
@@ -100,9 +102,9 @@ public class Trekkrutine {
 
     private static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, double sumSkatt) {
         double trekkMedDesimaler = sumSkatt / periode.getTrekkPeriode(tabellnummer);
-        System.out.println("trekkMedDesimaler = " + trekkMedDesimaler);
+        //System.out.println("trekkMedDesimaler = " + trekkMedDesimaler);
         long trekkUtenDesimaler = Math.round(trekkMedDesimaler);
-        System.out.println("trekkUtenDesimaler = " + trekkUtenDesimaler);
+        //System.out.println("trekkUtenDesimaler = " + trekkUtenDesimaler);
 
         return trekkUtenDesimaler;
     }
