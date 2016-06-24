@@ -83,15 +83,14 @@ public class TrekkrutineTest {
 
                 Periode periode = null;
 
-
-                char s = linje.charAt(5);
-                if (s == '1'  ) periode = Periode.PERIODE_1_MAANED;
-                if (s == '2'  ) periode = Periode.PERIODE_14_DAGER;
-                if (s == '3'  ) periode = Periode.PERIODE_1_UKE;
-                if (s == '4'  ) periode = Periode.PERIODE_4_DAGER;
-                if (s == '5'  ) periode = Periode.PERIODE_3_DAGER;
-                if (s == '6'  ) periode = Periode.PERIODE_2_DAGER;
-                if (s == '7'  ) periode = Periode.PERIODE_1_DAG;
+                char c = linje.charAt(5);
+                if (c == '1'  ) periode = Periode.PERIODE_1_MAANED;
+                if (c == '2'  ) periode = Periode.PERIODE_14_DAGER;
+                if (c == '3'  ) periode = Periode.PERIODE_1_UKE;
+                if (c == '4'  ) periode = Periode.PERIODE_4_DAGER;
+                if (c == '5'  ) periode = Periode.PERIODE_3_DAGER;
+                if (c == '6'  ) periode = Periode.PERIODE_2_DAGER;
+                if (c == '7'  ) periode = Periode.PERIODE_1_DAG;
 
                 long grunnlag = Long.parseLong(linje.substring(7,13));
                 long trekk = Long.parseLong(linje.substring(13,19));
@@ -100,7 +99,7 @@ public class TrekkrutineTest {
 
                 long diff = beregnetTrekk - trekk;
 
-                if (diff > 1 || diff < -1) {
+                if (diff > 0 ) {
                     if (ikkeOkTeller < 500) {
                         System.out.println(
                                 "Avvik i trekk fra fasit : " + tabellnummer.toString() + ", " + periode.toString()

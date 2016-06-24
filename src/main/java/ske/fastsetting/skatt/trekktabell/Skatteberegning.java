@@ -76,9 +76,11 @@ public class Skatteberegning {
 
         if (periode.maxTrekkgrunnlag > avrundetTrekkgrunnlag) return 0;
 
-        double overskytendeTrekk = (avrundetTrekkgrunnlag - periode.maxTrekkgrunnlag) * tabellnummer.overskytendeProsent / 100;
+        double overskytendeTrekk = (avrundetTrekkgrunnlag - periode.maxTrekkgrunnlag) * tabellnummer.overskytendeProsent / 100d;
 
-        return Math.round(overskytendeTrekk);
+        return (long) Math.floor(overskytendeTrekk);
+
     }
+
 
 }
