@@ -3,7 +3,7 @@ package ske.fastsetting.skatt.trekktabell;
 
 public class Fradrag {
 
-    public static double beregnMinsteFradrag(Tabellnummer tabellnummer, double personInntektAar) {
+    public static long beregnMinsteFradrag(Tabellnummer tabellnummer, long personInntektAar) {
 
         if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) return beregnMinstefradragPensjon(personInntektAar);
 
@@ -13,9 +13,9 @@ public class Fradrag {
     }
 
     // Beregner både for vanlige tabeller og standardfradrag-tabeller
-    private static double beregnMinstefradragVanlig(double personInntektAar) {
+    private static long beregnMinstefradragVanlig(long personInntektAar) {
 
-        double minstefradrag = (personInntektAar * Konstanter.ANV_MINSTE_FRAD_PROSENT) / 100;
+        long minstefradrag = Math.round((personInntektAar * Konstanter.ANV_MINSTE_FRAD_PROSENT) / 100);
 
         if (minstefradrag > Konstanter.MAX_ANV_MINSTE_FRADRAG) {
             minstefradrag = Konstanter.MAX_ANV_MINSTE_FRADRAG;
@@ -32,9 +32,9 @@ public class Fradrag {
         return minstefradrag;
     }
 
-    private static double beregnMinstefradragPensjon(double personInntektAar) {
+    private static long beregnMinstefradragPensjon(long personInntektAar) {
 
-        double minstefradrag = (personInntektAar * Konstanter.ANV_MINSTE_FRAD_PROSENT_PENSJ) / 100;
+        long minstefradrag = Math.round((personInntektAar * Konstanter.ANV_MINSTE_FRAD_PROSENT_PENSJ) / 100);
 
         if (minstefradrag > Konstanter.MAX_ANV_MINSTE_FRADRAG_PENSJ) {
             minstefradrag = Konstanter.MAX_ANV_MINSTE_FRADRAG_PENSJ;
@@ -42,11 +42,14 @@ public class Fradrag {
         if (minstefradrag < Konstanter.MIN_ANV_MINSTE_FRADRAG) {
             minstefradrag = Konstanter.MIN_ANV_MINSTE_FRADRAG;
         }
+        if (minstefradrag > personInntektAar) {
+            minstefradrag = personInntektAar;
+        }
         return minstefradrag;
     }
-    private static double beregnMinstefradragSjo(double personInntektAar) {
+    private static long beregnMinstefradragSjo(long personInntektAar) {
 
-        double minstefradrag = (personInntektAar * Konstanter.MINSTE_FRAD_PROSENT) / 100;
+        long minstefradrag = Math.round((personInntektAar * Konstanter.MINSTE_FRAD_PROSENT) / 100);
 
         if (minstefradrag > Konstanter.MAX_MINSTE_FRADRAG) {
             minstefradrag = Konstanter.MAX_MINSTE_FRADRAG;
@@ -63,17 +66,17 @@ public class Fradrag {
         return minstefradrag;
     }
 
-    public static double beregnStandardFradrag(Tabellnummer tabellnummer, double personInntektAar) {
-        if (!tabellnummer.isStandardFradrag()) return 0d;
+    public static long beregnStandardFradrag(Tabellnummer tabellnummer, long personInntektAar) {
+        if (!tabellnummer.isStandardFradrag()) return 0L;
 
-        double standardFradrag = (personInntektAar * Konstanter.STFRADRAG_PROSENT) / 100;
+        long standardFradrag = Math.round((personInntektAar * Konstanter.STFRADRAG_PROSENT) / 100);
         return (standardFradrag > Konstanter.MAX_STFRADRAG) ? Konstanter.MAX_STFRADRAG : standardFradrag;
     }
 
-    public static double beregnSjoFradrag(Tabellnummer tabellnummer, double personInntektAar) {
-        if (tabellnummer.tabelltype != Tabelltype.SJØ ) return 0d;
+    public static long beregnSjoFradrag(Tabellnummer tabellnummer, long personInntektAar) {
+        if (tabellnummer.tabelltype != Tabelltype.SJØ ) return 0L;
 
-        double sjoFradrag = (personInntektAar * Konstanter.SJO_PROSENT) / 100;
+        long sjoFradrag = Math.round((personInntektAar * Konstanter.SJO_PROSENT) / 100);
         return (sjoFradrag > Konstanter.MAX_SJO_FRADRAG) ? Konstanter.MAX_SJO_FRADRAG : sjoFradrag;
     }
 

@@ -5,7 +5,7 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 public class Trekkrutine {
 
 
-    public static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
+    public static long beregnTabellTrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
 
         System.out.println("- - - - - - - - - " + tabellnummer.toString() + " - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
@@ -19,7 +19,7 @@ public class Trekkrutine {
 
         System.out.println("avrundetTrekkgrunnlag = " + avrundetTrekkgrunnlag);
 
-        double personInntektAar = avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer);
+        long personInntektAar = Math.round(avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer));
 
         System.out.println("person-inntekt-år = " + personInntektAar);
 
@@ -27,7 +27,7 @@ public class Trekkrutine {
 
         System.out.println("AlmInntÅr = " + alminneligInntektAar);
 
-        double sumSkatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
+        long sumSkatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
 
         System.out.println("SumSkatt = " + sumSkatt);
 
@@ -42,11 +42,11 @@ public class Trekkrutine {
 
 
     public static void main(String[] args) {
-        Tabellnummer t = Tabellnummer.TABELL_7128;
-        Periode p = Periode.PERIODE_4_DAGER;
-        long grl = 780L;
+        Tabellnummer t = Tabellnummer.TABELL_7131P;
+        Periode p = Periode.PERIODE_1_MAANED;
+        long grl = 300L;
 
-        long trekk = beregnTrekk(t, p, grl);
+        long trekk = beregnTabellTrekk(t, p, grl);
 
         System.out.println("Resultat: " + t.toString() + " " + p.toString() + " " + grl + " " + trekk);
 
@@ -61,10 +61,10 @@ public class Trekkrutine {
     /*
     Finner netto årsinntekt (alminneligInntekt)
     */
-    private static double finnAlminneligInntektAar(Tabellnummer tabellnummer, double personInntektAar) {
-        double minsteFradrag = Fradrag.beregnMinsteFradrag(tabellnummer, personInntektAar);
-        double standardFradrag = Fradrag.beregnStandardFradrag(tabellnummer, personInntektAar);
-        double sjoFradrag = Fradrag.beregnSjoFradrag(tabellnummer, personInntektAar);
+    private static long finnAlminneligInntektAar(Tabellnummer tabellnummer, long personInntektAar) {
+        long minsteFradrag = Fradrag.beregnMinsteFradrag(tabellnummer, personInntektAar);
+        long standardFradrag = Fradrag.beregnStandardFradrag(tabellnummer, personInntektAar);
+        long sjoFradrag = Fradrag.beregnSjoFradrag(tabellnummer, personInntektAar);
         System.out.println("Minstefradrag = " + minsteFradrag);
         System.out.println("standardFradrag=" + standardFradrag);
         System.out.println("sjøFradrag=" + sjoFradrag);
@@ -80,21 +80,21 @@ public class Trekkrutine {
     }
 
 
-    private static double beregnSkatt(Tabellnummer tabellnummer, double personInntektAar, double alminneligInntektAar) {
+    private static long beregnSkatt(Tabellnummer tabellnummer, double personInntektAar, double alminneligInntektAar) {
 
-        double kommuneskatt = Skatteberegning.beregnKommuneskatt(alminneligInntektAar);
+        long kommuneskatt = Skatteberegning.beregnKommuneskatt(alminneligInntektAar);
 
         System.out.println("Kommuneskatt = " + kommuneskatt);
 
-        double fellesskatt = Skatteberegning.beregnFelleseskatt(tabellnummer, alminneligInntektAar);
+        long fellesskatt = Skatteberegning.beregnFelleseskatt(tabellnummer, alminneligInntektAar);
 
         System.out.println("FellesSkatt = " + fellesskatt);
 
-        double trinnskatt = Skatteberegning.beregnTrinnskatt(tabellnummer, personInntektAar);
+        long trinnskatt = Skatteberegning.beregnTrinnskatt(tabellnummer, personInntektAar);
 
         System.out.println("Trinnskatt = " + trinnskatt);
 
-        double trygdeavgift = Skatteberegning.beregnTrygdeavgift(tabellnummer, personInntektAar);
+        long trygdeavgift = Skatteberegning.beregnTrygdeavgift(tabellnummer, personInntektAar);
 
         System.out.println("Trygdeagift = " + trygdeavgift);
 

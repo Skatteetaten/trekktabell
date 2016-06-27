@@ -2,21 +2,21 @@ package ske.fastsetting.skatt.trekktabell;
 
 public class Skatteberegning {
 
-    public static double beregnKommuneskatt(double alminneligInntektAar) {
-        return alminneligInntektAar > 0 ? alminneligInntektAar * Konstanter.SKATTORE / 100 : 0d;
+    public static long beregnKommuneskatt(double alminneligInntektAar) {
+        return alminneligInntektAar > 0 ? Math.round(alminneligInntektAar * Konstanter.SKATTORE / 100) : 0L;
     }
 
-    public static double beregnFelleseskatt(Tabellnummer tabellnummer, double alminneligInntektAar) {
+    public static long beregnFelleseskatt(Tabellnummer tabellnummer, double alminneligInntektAar) {
         if (alminneligInntektAar < 0)
-            return 0d;
+            return 0L;
 
-        return tabellnummer.tabelltype == Tabelltype.FINNMARK ? alminneligInntektAar * Konstanter.FELLES_SKATT_FINNMARK / 100 :
-                alminneligInntektAar * Konstanter.FELLES_SKATT_VANLIG / 100;
+        return tabellnummer.tabelltype == Tabelltype.FINNMARK ? Math.round(alminneligInntektAar * Konstanter.FELLES_SKATT_FINNMARK / 100) :
+                Math.round(alminneligInntektAar * Konstanter.FELLES_SKATT_VANLIG / 100);
     }
 
-    public static double beregnTrinnskatt(Tabellnummer tabellnummer, double personInntektAar) {
+    public static long beregnTrinnskatt(Tabellnummer tabellnummer, double personInntektAar) {
         if (personInntektAar < Konstanter.TRINN1)
-            return 0d;
+            return 0L;
 
         double prosentTrinn3 = 0d;
         if (tabellnummer.tabelltype == Tabelltype.FINNMARK)
@@ -28,32 +28,32 @@ public class Skatteberegning {
 
         if (personInntektAar < Konstanter.TRINN2) {
             trinnskatt = (personInntektAar - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100;
-            return trinnskatt;
+            return Math.round(trinnskatt);
         }
 
         if (personInntektAar < Konstanter.TRINN3) {
             trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                     + ((personInntektAar - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100);
-            return trinnskatt;
+            return Math.round(trinnskatt);
         }
 
         if (personInntektAar < Konstanter.TRINN4) {
             trinnskatt =  ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                     + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
                     + ((personInntektAar - Konstanter.TRINN3) * prosentTrinn3 / 100);
-            return trinnskatt;
+            return Math.round(trinnskatt);
         }
         trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                 + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
                 + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
                 + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100);
-        return trinnskatt;
+        return Math.round(trinnskatt);
     }
 
-    public static double beregnTrygdeavgift(Tabellnummer tabellnummer, double personInntektAar) {
+    public static long beregnTrygdeavgift(Tabellnummer tabellnummer, double personInntektAar) {
 
-        if (personInntektAar < Konstanter.AVG_FRI_TRYGDEAVGIFT ) return 0d;
-        if (tabellnummer.ikkeTrygdeavgift()) return 0d;
+        if (personInntektAar < Konstanter.AVG_FRI_TRYGDEAVGIFT ) return 0L;
+        if (tabellnummer.ikkeTrygdeavgift()) return 0L;
 
         double trygdeavgift = 0d;
         if (tabellnummer.lavSatsTrygdeavgift()) {
@@ -61,7 +61,7 @@ public class Skatteberegning {
                 trygdeavgift = personInntektAar * Konstanter.LAV_TRYGDEAVG_PROSENT / 100;
             else
                 trygdeavgift = (personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100;
-            return trygdeavgift;
+            return Math.round(trygdeavgift);
         }
         if (personInntektAar > Konstanter.HOY_GRENSE_TRYGDEAVGIFT)
             trygdeavgift = personInntektAar * Konstanter.HOY_TRYGDEAVG_PROSENT / 100;
@@ -69,7 +69,7 @@ public class Skatteberegning {
             trygdeavgift = (personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100;
      //   System.out.println("Trygdeavgift = " + trygdeavgift);
 
-        return trygdeavgift;
+        return Math.round(trygdeavgift);
     }
 
     public static long beregnOverskytendeTrekk(Tabellnummer tabellnummer, Periode periode, double avrundetTrekkgrunnlag) {
@@ -78,7 +78,7 @@ public class Skatteberegning {
 
         double overskytendeTrekk = (avrundetTrekkgrunnlag - periode.maxTrekkgrunnlag) * tabellnummer.overskytendeProsent / 100d;
 
-        return (long) Math.floor(overskytendeTrekk);
+        return Math.round(overskytendeTrekk);
 
     }
 

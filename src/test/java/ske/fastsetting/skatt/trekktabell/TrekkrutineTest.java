@@ -15,7 +15,7 @@ public class TrekkrutineTest {
 
     @Test
     public void skal_returnere_0_ved_trekkgrunnlag_lik_0() {
-        long beregnetTrekk = Trekkrutine.beregnTrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 0L);
+        long beregnetTrekk = Trekkrutine.beregnTabellTrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 0L);
         assertEquals(0L, beregnetTrekk);
     }
 
@@ -24,7 +24,7 @@ public class TrekkrutineTest {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (long trekkgrunnlag = 10L; trekkgrunnlag < 1000L; trekkgrunnlag += 166) {
-                    long beregnetTrekk = Trekkrutine.beregnTrekk(tabellnummer, periode, trekkgrunnlag);
+                    long beregnetTrekk = Trekkrutine.beregnTabellTrekk(tabellnummer, periode, trekkgrunnlag);
                     assertTrue(trekkgrunnlag >= beregnetTrekk);
                 }
             }
@@ -95,11 +95,11 @@ public class TrekkrutineTest {
                 long grunnlag = Long.parseLong(linje.substring(7,13));
                 long trekk = Long.parseLong(linje.substring(13,19));
 
-                long beregnetTrekk = Trekkrutine.beregnTrekk(tabellnummer, periode, grunnlag);
+                long beregnetTrekk = Trekkrutine.beregnTabellTrekk(tabellnummer, periode, grunnlag);
 
                 long diff = beregnetTrekk - trekk;
 
-                if (diff > 0 ) {
+                if (diff > 2 || diff < -2) {
                     if (ikkeOkTeller < 500) {
                         System.out.println(
                                 "Avvik i trekk fra fasit : " + tabellnummer.toString() + ", " + periode.toString()
