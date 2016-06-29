@@ -67,7 +67,6 @@ public class Skatteberegning {
             trygdeavgift = personInntektAar * Konstanter.HOY_TRYGDEAVG_PROSENT / 100;
         else
             trygdeavgift = (personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100;
-     //   System.out.println("Trygdeavgift = " + trygdeavgift);
 
         return Math.round(trygdeavgift);
     }
