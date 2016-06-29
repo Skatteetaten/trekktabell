@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
@@ -61,13 +63,13 @@ public class TrekkrutineTest {
     @Test
     public void trekket_skal_stemme_fasit_fra_fil() throws Exception {
 
-        String filNavn = "trekktabell.txt";
+        URL filSti = getClass().getResource("/trekktabell.txt");
         long teller = 0;
         long okTeller = 0;
         long ikkeOkTeller = 0;
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filNavn));
+            BufferedReader reader = new BufferedReader(new FileReader(filSti.getPath()));
             String linje = null;
 
             while((linje = reader.readLine()) != null) {
@@ -112,7 +114,7 @@ public class TrekkrutineTest {
         }
         catch(IOException ex) {
             System.out.println (ex.toString());
-            System.out.println("Fant ikke filen : " + filNavn);
+            System.out.println("Fant ikke filen : " + filSti.getPath());
         }
 
         System.out.println("Linjer lest " + teller) ;
