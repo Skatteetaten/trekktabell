@@ -30,6 +30,7 @@ public class Skatteberegning {
 
         double trinnskatt;
 
+        //TODO lag forklarende metodenavn
         if (personInntektAar < Konstanter.TRINN2) {
             trinnskatt = (personInntektAar - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100;
             return Math.round(trinnskatt);
@@ -62,7 +63,7 @@ public class Skatteberegning {
         if (tabellnummer.ikkeTrygdeavgift()) {
             return 0L;
         }
-
+//TODO metodenavn
         double trygdeavgift;
         if (tabellnummer.lavSatsTrygdeavgift()) {
             if (personInntektAar > Konstanter.LAV_GRENSE_TRYGDEAVGIFT) {
