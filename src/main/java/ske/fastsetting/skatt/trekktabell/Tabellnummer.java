@@ -168,14 +168,12 @@ public enum Tabellnummer {
     TABELL_0101(Tabelltype.SJØ, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_0101_0201),
     TABELL_0201(Tabelltype.SJØ, 0L, Konstanter.KLASSE2_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_0101_0201),
 
-    // TODO: 21.06.16 Finn på bedre navn enn SPESIAL !
     TABELL_7150(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_7150_7250),
     TABELL_7250(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE2_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_7150_7250),
     TABELL_7160(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_7160_7260),
     TABELL_7260(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE2_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_7160_7260),
     TABELL_7170(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7170_7270),
     TABELL_7270(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE2_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7170_7270);
-
 
     public final Tabelltype tabelltype;
     public final long tabellFradrag;
@@ -184,8 +182,8 @@ public enum Tabellnummer {
     public final boolean trekk_i_12_mnd;
     public final int overskytendeProsent;
 
-
-    private Tabellnummer(Tabelltype tabelltype, long tabellFradrag, long klasseFradrag, String trygdeavgiftstype, boolean trekk_i_12_mnd, int overskytendeProsent) {
+    Tabellnummer(Tabelltype tabelltype, long tabellFradrag, long klasseFradrag, String trygdeavgiftstype,
+            boolean trekk_i_12_mnd, int overskytendeProsent) {
         this.tabelltype = tabelltype;
         this.tabellFradrag = tabellFradrag;
         this.klasseFradrag = klasseFradrag;
@@ -196,18 +194,14 @@ public enum Tabellnummer {
     public boolean isStandardFradrag() {
         return (tabelltype == Tabelltype.STANDARDFRADRAG ||
                 tabelltype == Tabelltype.SJØ ||
-                tabelltype == Tabelltype.FINNMARK ) ? true : false;
+                tabelltype == Tabelltype.FINNMARK);
     }
 
     public boolean ikkeTrygdeavgift() {
-        return trygdeavgiftstype.equals("Ingen") ? true : false;
+        return trygdeavgiftstype.equals("Ingen");
     }
     public boolean lavSatsTrygdeavgift() {
-        return trygdeavgiftstype.equals("Lav") ? true : false;
+        return trygdeavgiftstype.equals("Lav");
     }
-    public boolean hoySatsTrygdeavgift() {
-        return trygdeavgiftstype.equals("Høy") ? true : false;
-    }
-
 
 }

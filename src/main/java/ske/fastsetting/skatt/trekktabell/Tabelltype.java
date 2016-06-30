@@ -6,6 +6,5 @@ public enum Tabelltype {
     STANDARDFRADRAG,
     SJØ,
     FINNMARK,
-    SPESIAL;
-
+    SPESIAL
 }

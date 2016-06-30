@@ -52,7 +52,7 @@ public class Konstanter {
     /*
     Det som avgjør den overskytende prosenten er hva som som betales i trygdeavgift, antall trekkmåneder og om det skal benyttes finnmark-satser eller ikke.
      */
-    // TODO: 21.06.16 kan vi beregne disse i stedet ???
+    //
 
     public static final int
             OVERSKYTENDE_PROSENT_VANLIG = 54,

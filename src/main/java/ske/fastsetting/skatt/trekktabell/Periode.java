@@ -19,11 +19,11 @@ public enum Periode {
     public final int    maxTrekkgrunnlag;
 
 
-    private Periode(double inntektsPeriode, double trekkPeriode,
-                    double inntektsPeriodePensjon, double trekkPeriodePensjon,
-                    double inntektsPeriodeStandardfradrag, double trekkPeriodeStandardfradrag,
-                    int    avrunding,
-                    int    maxTrekkgrunnlag) {
+    Periode(double inntektsPeriode, double trekkPeriode,
+            double inntektsPeriodePensjon, double trekkPeriodePensjon,
+            double inntektsPeriodeStandardfradrag, double trekkPeriodeStandardfradrag,
+            int avrunding,
+            int maxTrekkgrunnlag) {
 
         this.inntektsPeriode = inntektsPeriode;
         this.trekkPeriode = trekkPeriode;
