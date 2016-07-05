@@ -41,7 +41,6 @@ public class TrekkrutineLikhetstest {
                         "Testen skal ikke ha avvik. %s, %s, grunnlag= %s, beregnet trekk= %s, trekk fra fil= %s, maks akseptert avvik= %s",
                         tabellnummer.toString(),
                         periode.toString(),
-//                        periode.isPresent() ? "null" : periode.toString(),
                         grunnlag,
                         beregnetTrekk,
                         trekk,
@@ -50,34 +49,27 @@ public class TrekkrutineLikhetstest {
         }
     }
 
-
     private Periode hentPeriode(String linje) {
-         Periode periode = null;
-
         char trekkperiodeFraFil = linje.charAt(5);
-        //TODO lag switch
-        if (trekkperiodeFraFil == '1') {
-            periode = Periode.PERIODE_1_MAANED;
+
+        switch (trekkperiodeFraFil) {
+        case '1':
+            return Periode.PERIODE_1_MAANED;
+        case '2':
+            return Periode.PERIODE_14_DAGER;
+        case '3':
+            return Periode.PERIODE_1_UKE;
+        case '4':
+            return Periode.PERIODE_4_DAGER;
+        case '5':
+            return Periode.PERIODE_3_DAGER;
+        case '6':
+            return Periode.PERIODE_2_DAGER;
+        case '7':
+            return Periode.PERIODE_1_DAG;
         }
-        if (trekkperiodeFraFil == '2') {
-            periode = Periode.PERIODE_14_DAGER;
-        }
-        if (trekkperiodeFraFil == '3') {
-            periode = Periode.PERIODE_1_UKE;
-        }
-        if (trekkperiodeFraFil == '4') {
-            periode = Periode.PERIODE_4_DAGER;
-        }
-        if (trekkperiodeFraFil == '5') {
-            periode = Periode.PERIODE_3_DAGER;
-        }
-        if (trekkperiodeFraFil == '6') {
-            periode = Periode.PERIODE_2_DAGER;
-        }
-        if (trekkperiodeFraFil == '7') {
-            periode = Periode.PERIODE_1_DAG;
-        }
-        return periode;
+
+        throw new IllegalStateException("Ugyldig periode i filen !");
     }
 
     private Tabellnummer leggTilPForPensjonisttabeller(String linje) {
@@ -90,7 +82,9 @@ public class TrekkrutineLikhetstest {
         return tabellnummer;
     }
 
-    private boolean differanseErMerEnn(int maksDiff, long diff) {return diff > maksDiff || diff < -maksDiff;}
+    private boolean differanseErMerEnn(int maksDiff, long diff) {
+        return diff > maksDiff || diff < -maksDiff;
+    }
 
     private boolean ikkeTrekkSomHarForventetAvvik(Tabellnummer tabellnummer, Periode periode, long grunnlag) {
         return !(
