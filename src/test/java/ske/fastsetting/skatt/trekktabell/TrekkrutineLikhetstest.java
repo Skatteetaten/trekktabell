@@ -25,22 +25,23 @@ public class TrekkrutineLikhetstest {
             }
 
             Tabellnummer tabellnummer = leggTilPForPensjonisttabeller(linje);
-            Optional<Periode> periode = hentPeriode(linje);
+            Periode periode = hentPeriode(linje);
 
             long grunnlag = Long.parseLong(linje.substring(7, 13));
             long trekk = Long.parseLong(linje.substring(13, 19));
 
-            long beregnetTrekk = Trekkrutine.beregnTabellTrekk(tabellnummer, periode.get(), grunnlag);
+            long beregnetTrekk = Trekkrutine.beregnTabellTrekk(tabellnummer, periode, grunnlag);
             long diff = beregnetTrekk - trekk;
 
             int maksDiff = 2;
             if (differanseErMerEnn(maksDiff, diff)
-                    && ikkeTrekkSomHarForventetAvvik(tabellnummer, periode.get(), grunnlag)) {
+                    && ikkeTrekkSomHarForventetAvvik(tabellnummer, periode, grunnlag)) {
 
                 fail(String.format(
                         "Testen skal ikke ha avvik. %s, %s, grunnlag= %s, beregnet trekk= %s, trekk fra fil= %s, maks akseptert avvik= %s",
                         tabellnummer.toString(),
-                        periode.isPresent() ? "null" : periode.toString(),
+                        periode.toString(),
+//                        periode.isPresent() ? "null" : periode.toString(),
                         grunnlag,
                         beregnetTrekk,
                         trekk,
@@ -49,31 +50,32 @@ public class TrekkrutineLikhetstest {
         }
     }
 
-    private Optional<Periode> hentPeriode(String linje) {
-        Optional<Periode> periode = Optional.empty();
+
+    private Periode hentPeriode(String linje) {
+         Periode periode = null;
 
         char trekkperiodeFraFil = linje.charAt(5);
         //TODO lag switch
         if (trekkperiodeFraFil == '1') {
-            periode = Optional.of(Periode.PERIODE_1_MAANED);
+            periode = Periode.PERIODE_1_MAANED;
         }
         if (trekkperiodeFraFil == '2') {
-            periode = Optional.of(Periode.PERIODE_14_DAGER);
+            periode = Periode.PERIODE_14_DAGER;
         }
         if (trekkperiodeFraFil == '3') {
-            periode = Optional.of(Periode.PERIODE_1_UKE);
+            periode = Periode.PERIODE_1_UKE;
         }
         if (trekkperiodeFraFil == '4') {
-            periode = Optional.of(Periode.PERIODE_4_DAGER);
+            periode = Periode.PERIODE_4_DAGER;
         }
         if (trekkperiodeFraFil == '5') {
-            periode = Optional.of(Periode.PERIODE_3_DAGER);
+            periode = Periode.PERIODE_3_DAGER;
         }
         if (trekkperiodeFraFil == '6') {
-            periode = Optional.of(Periode.PERIODE_2_DAGER);
+            periode = Periode.PERIODE_2_DAGER;
         }
         if (trekkperiodeFraFil == '7') {
-            periode = Optional.of(Periode.PERIODE_1_DAG);
+            periode = Periode.PERIODE_1_DAG;
         }
         return periode;
     }

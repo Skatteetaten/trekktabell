@@ -28,31 +28,40 @@ public class Skatteberegning {
             prosentTrinn3 = Konstanter.TRINNSKATT_PROSENT3;
         }
 
-        double trinnskatt;
-
-        //TODO lag forklarende metodenavn
         if (personInntektAar < Konstanter.TRINN2) {
-            trinnskatt = (personInntektAar - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100;
-            return Math.round(trinnskatt);
+            return beregnTrinnskattHvisInntektUnderTrinn2(personInntektAar);
         }
 
         if (personInntektAar < Konstanter.TRINN3) {
-            trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
-                    + ((personInntektAar - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100);
-            return Math.round(trinnskatt);
+            return beregnTrinnskattHvisInntektUnderTrinn3(personInntektAar);
         }
 
         if (personInntektAar < Konstanter.TRINN4) {
-            trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
-                    + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
-                    + ((personInntektAar - Konstanter.TRINN3) * prosentTrinn3 / 100);
-            return Math.round(trinnskatt);
+            return beregnTrinnskattHvisInntektUnderTrinn4(personInntektAar, prosentTrinn3);
         }
-        trinnskatt = ((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
+        return beregnTrinnskattHvisInntektOverTrinn4(personInntektAar, prosentTrinn3);
+    }
+
+    private static long beregnTrinnskattHvisInntektUnderTrinn2(double personInntektAar) {
+        return Math.round((personInntektAar - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100);
+    }
+
+    private static long beregnTrinnskattHvisInntektUnderTrinn3(double personInntektAar) {
+        return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
+                + ((personInntektAar - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100));
+    }
+
+    private static long beregnTrinnskattHvisInntektUnderTrinn4(double personInntektAar, double prosentTrinn3) {
+        return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
+                + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
+                + ((personInntektAar - Konstanter.TRINN3) * prosentTrinn3 / 100));
+    }
+
+    private static long beregnTrinnskattHvisInntektOverTrinn4(double personInntektAar, double prosentTrinn3) {
+        return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                 + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
                 + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
-                + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100);
-        return Math.round(trinnskatt);
+                + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100));
     }
 
     static long beregnTrygdeavgift(Tabellnummer tabellnummer, double personInntektAar) {
@@ -63,7 +72,7 @@ public class Skatteberegning {
         if (tabellnummer.ikkeTrygdeavgift()) {
             return 0L;
         }
-//TODO metodenavn
+        //TODO metodenavn
         double trygdeavgift;
         if (tabellnummer.lavSatsTrygdeavgift()) {
             if (personInntektAar > Konstanter.LAV_GRENSE_TRYGDEAVGIFT) {

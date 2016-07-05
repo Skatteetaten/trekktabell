@@ -9,6 +9,7 @@ public class Konstanter {
     /*
     Skattesatser for 2016
      */
+
     public static final long
             KLASSE1_VANLIG = 51750L,
             KLASSE2_VANLIG = 76250L,
@@ -18,8 +19,8 @@ public class Konstanter {
             TRINN2 = 224900L,
             TRINN3 = 565400L,
             TRINN4 = 909500L,
-            LAV_GRENSE_TRYGDEAVGIFT = 62374L,
-            HOY_GRENSE_TRYGDEAVGIFT = 73884L,
+            LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
+            HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
             AVG_FRI_TRYGDEAVGIFT = 49650L,
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 3520L,
@@ -52,7 +53,6 @@ public class Konstanter {
     /*
     Det som avgjør den overskytende prosenten er hva som som betales i trygdeavgift, antall trekkmåneder og om det skal benyttes finnmark-satser eller ikke.
      */
-    //
 
     public static final int
             OVERSKYTENDE_PROSENT_VANLIG = 54,
@@ -72,6 +72,14 @@ public class Konstanter {
             OVERSKYTENDE_PROSENT_7150_7250 = 47,
             OVERSKYTENDE_PROSENT_7160_7260 = 39,
             OVERSKYTENDE_PROSENT_7170_7270 = 44;
+
+
+    static long beregnLavGrenseTrygdeavgift() {
+        return Math.round((AVG_FRI_TRYGDEAVGIFT * TRYGDE_PROSENT)/(TRYGDE_PROSENT - LAV_TRYGDEAVG_PROSENT));
+    }
+    static long beregnHoyGrenseTrygdeavgift() {
+        return Math.round((AVG_FRI_TRYGDEAVGIFT * TRYGDE_PROSENT)/(TRYGDE_PROSENT - HOY_TRYGDEAVG_PROSENT));
+    }
 
 }
 
