@@ -5,11 +5,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+
 public class TrekkrutineTest {
 
     @Test
     public void skal_returnere_0_ved_trekkgrunnlag_lik_0() {
-        long beregnetTrekk = Trekkrutine.beregnTabellTrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 0L);
+        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 0L);
         assertEquals(0L, beregnetTrekk);
     }
 
@@ -19,7 +24,7 @@ public class TrekkrutineTest {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (long trekkgrunnlag = 10L; trekkgrunnlag < 1000L; trekkgrunnlag += 166) {
-                    long beregnetTrekk = Trekkrutine.beregnTabellTrekk(tabellnummer, periode, trekkgrunnlag);
+                    long beregnetTrekk = Trekkrutine.beregnTabelltrekk(tabellnummer, periode, trekkgrunnlag);
                     assertTrue(trekkgrunnlag >= beregnetTrekk);
                 }
             }
@@ -54,11 +59,40 @@ public class TrekkrutineTest {
             }
         }
     }
+
+    @Test
+    public void overskytende_trekk_skal_vaere_storre_enn_0_med_java8() throws Exception {
+
+        List<Tabellnummer> tabListe = Arrays.asList(Tabellnummer.values());
+        List<Periode> periodeListe = Arrays.asList(Periode.values());
+        List<Double> grunnlag = DoubleStream.iterate(1000, n -> n + 166)
+                .limit(1000)
+                .boxed()
+                .collect(Collectors.toList());
+
+        tabListe.stream()
+                .forEach(t -> {
+                    periodeListe.stream()
+                            .forEach(p -> {
+                                grunnlag.stream()
+                                        .forEach(g -> {
+                                    if (g > p.maxTrekkgrunnlag) {
+                                        long overskytendeTrekk = Skatteberegning
+                                                .beregnOverskytendeTrekk(t, p, g);
+                                        assertTrue(overskytendeTrekk > 0L);
+                                    }
+                                });
+                            });
+                });
+
+    }
+
     @Test
     public void konntrollerBeregningAvLavGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftLavSats = Konstanter.beregnLavGrenseTrygdeavgift();
         assertEquals(62374L, grenseTrygdeavgiftLavSats);
     }
+
     @Test
     public void konntrollerBeregningAvHoyGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftHoySats = Konstanter.beregnHoyGrenseTrygdeavgift();

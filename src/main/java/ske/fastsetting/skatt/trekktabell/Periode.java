@@ -36,6 +36,7 @@ public enum Periode {
     }
 
 
+    //// TODO: 12.07.16 gjør om til pakke-metoder 
     public double getInntektsPeriode(Tabellnummer tabellnummer) {
 
         if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) return inntektsPeriodePensjon;
@@ -53,6 +54,5 @@ public enum Periode {
 
         return trekkPeriodeStandardfradrag;
     }
-
 
 }

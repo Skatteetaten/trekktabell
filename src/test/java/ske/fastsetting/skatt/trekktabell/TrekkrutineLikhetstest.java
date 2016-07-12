@@ -5,7 +5,6 @@ import static org.junit.Assert.fail;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.URL;
-import java.util.Optional;
 
 import org.junit.Test;
 
@@ -30,12 +29,12 @@ public class TrekkrutineLikhetstest {
             long grunnlag = Long.parseLong(linje.substring(7, 13));
             long trekk = Long.parseLong(linje.substring(13, 19));
 
-            long beregnetTrekk = Trekkrutine.beregnTabellTrekk(tabellnummer, periode, grunnlag);
+            long beregnetTrekk = Trekkrutine.beregnTabelltrekk(tabellnummer, periode, grunnlag);
             long diff = beregnetTrekk - trekk;
 
             int maksDiff = 2;
             if (differanseErMerEnn(maksDiff, diff)
-                    && ikkeTrekkSomHarForventetAvvik(tabellnummer, periode, grunnlag)) {
+                    & !kjenteFeilICobolRutinen(tabellnummer, periode, grunnlag)) {
 
                 fail(String.format(
                         "Testen skal ikke ha avvik. %s, %s, grunnlag= %s, beregnet trekk= %s, trekk fra fil= %s, maks akseptert avvik= %s",
@@ -86,14 +85,16 @@ public class TrekkrutineLikhetstest {
         return diff > maksDiff || diff < -maksDiff;
     }
 
-    private boolean ikkeTrekkSomHarForventetAvvik(Tabellnummer tabellnummer, Periode periode, long grunnlag) {
-        return !(
-                (tabellnummer == Tabellnummer.TABELL_7131P
-                        && periode == Periode.PERIODE_1_MAANED
-                        && grunnlag <= 200) ||
-                        (tabellnummer == Tabellnummer.TABELL_7132P
-                                && periode == Periode.PERIODE_1_MAANED
-                                && grunnlag == 200));
+    private boolean kjenteFeilICobolRutinen(Tabellnummer tabellnummer, Periode periode, long grunnlag) {
+        if (tabellnummer == Tabellnummer.TABELL_7131P
+                && periode == Periode.PERIODE_1_MAANED
+                && grunnlag <= 200)
+            return true;
+        if (tabellnummer == Tabellnummer.TABELL_7132P
+                && periode == Periode.PERIODE_1_MAANED
+                && grunnlag == 200)
+            return true;
+        return false;
     }
 
 }

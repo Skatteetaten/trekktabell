@@ -2,7 +2,7 @@ package ske.fastsetting.skatt.trekktabell;
 
 public class Trekkrutine {
 
-    public static long beregnTabellTrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
+    public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
 
         long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, trekkgrunnlag);
 
