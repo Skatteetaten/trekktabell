@@ -5,12 +5,12 @@ public class Konstanter {
     /**
      * Inntektsåret dette systemet gjelder for.
      */
-    public static final int AAR = 2016;
+    static final int AAR = 2016;
     /*
     Skattesatser for 2016
      */
 
-    public static final long
+    static final long
             KLASSE1_VANLIG = 51750L,
             KLASSE2_VANLIG = 76250L,
             KLASSE1_FINNMARK = 67250L,
@@ -32,7 +32,7 @@ public class Konstanter {
             ANV_LONNSFRADRAG = 27984L,
             MAX_SJO_FRADRAG = 80000L;
 
-    public static final double
+    static final double
             PROSENT_TRINN1 = 0.44d,
             PROSENT_TRINN2 = 1.7d,
             PROSENT_TRINN4 = 13.7d,
@@ -54,7 +54,7 @@ public class Konstanter {
     Det som avgjør den overskytende prosenten er hva som som betales i trygdeavgift, antall trekkmåneder og om det skal benyttes finnmark-satser eller ikke.
      */
 
-    public static final int
+    static final int
             OVERSKYTENDE_PROSENT_VANLIG = 54,
             OVERSKYTENDE_PROSENT_PENSJONIST = 48,
             OVERSKYTENDE_PROSENT_7300_7400 = 54,

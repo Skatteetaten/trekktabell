@@ -9,14 +9,14 @@ public enum Periode {
     PERIODE_2_DAGER(121.20d, (120d*46d)/52d, 183d, (183d*11d)/12d, 183d, (183d*10.5d)/12d, 20, 7900 ),
     PERIODE_1_DAG  (242.40d, (240d*46d)/52d, 365d, (365d*11d)/12d, 365d, (365d*10.5d)/12d, 20, 3900 );
 
-    public final double inntektsPeriode;
-    public final double trekkPeriode;
-    public final double inntektsPeriodePensjon;
-    public final double trekkPeriodePensjon;
-    public final double inntektsPeriodeStandardfradrag;
-    public final double trekkPeriodeStandardfradrag;
-    public final int    avrunding;
-    public final int    maxTrekkgrunnlag;
+    final double inntektsPeriode;
+    final double trekkPeriode;
+    final double inntektsPeriodePensjon;
+    final double trekkPeriodePensjon;
+    final double inntektsPeriodeStandardfradrag;
+    final double trekkPeriodeStandardfradrag;
+    final int    avrunding;
+    final int    maxTrekkgrunnlag;
 
 
     Periode(double inntektsPeriode, double trekkPeriode,
@@ -35,18 +35,14 @@ public enum Periode {
         this.maxTrekkgrunnlag = maxTrekkgrunnlag;
     }
 
-
-    //// TODO: 12.07.16 gjør om til pakke-metoder 
-    public double getInntektsPeriode(Tabellnummer tabellnummer) {
-
+    double getInntektsPeriode(Tabellnummer tabellnummer) {
         if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) return inntektsPeriodePensjon;
         if (tabellnummer.tabelltype == Tabelltype.VANLIG) return inntektsPeriode;
 
         return inntektsPeriodeStandardfradrag;
     }
 
-    public double getTrekkPeriode(Tabellnummer tabellnummer) {
-
+    double getTrekkPeriode(Tabellnummer tabellnummer) {
         if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) return trekkPeriodePensjon;
         if (tabellnummer.tabelltype == Tabelltype.VANLIG) return trekkPeriode;
 

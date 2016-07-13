@@ -20,7 +20,6 @@ public class TrekkrutineTest {
 
     @Test
     public void trekket_skal_vaere_mindre_eller_lik_trekkgrunnlag2() throws Exception {
-        //TODO lag til streams
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (long trekkgrunnlag = 10L; trekkgrunnlag < 1000L; trekkgrunnlag += 166) {
@@ -33,7 +32,6 @@ public class TrekkrutineTest {
 
     @Test
     public void skal_ikke_ha_trygdeavgift() throws Exception {
-        //TODO lag til streams
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (double inntekt = 10d; inntekt < 1000000L; inntekt += 16666) {
                 if (tabellnummer.ikkeTrygdeavgift()) {
@@ -46,7 +44,6 @@ public class TrekkrutineTest {
 
     @Test
     public void overskytende_trekk_skal_vaere_storre_enn_0() throws Exception {
-        //TODO lag til streams
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (double trekkgrunnlag = 1000L; trekkgrunnlag < 100000L; trekkgrunnlag += 166) {
@@ -61,8 +58,8 @@ public class TrekkrutineTest {
     }
 
     @Test
+    // Samme som over, men med streams
     public void overskytende_trekk_skal_vaere_storre_enn_0_med_java8() throws Exception {
-
         List<Tabellnummer> tabListe = Arrays.asList(Tabellnummer.values());
         List<Periode> periodeListe = Arrays.asList(Periode.values());
         List<Double> grunnlag = DoubleStream.iterate(1000, n -> n + 166)
@@ -76,12 +73,12 @@ public class TrekkrutineTest {
                             .forEach(p -> {
                                 grunnlag.stream()
                                         .forEach(g -> {
-                                    if (g > p.maxTrekkgrunnlag) {
-                                        long overskytendeTrekk = Skatteberegning
-                                                .beregnOverskytendeTrekk(t, p, g);
-                                        assertTrue(overskytendeTrekk > 0L);
-                                    }
-                                });
+                                            if (g > p.maxTrekkgrunnlag) {
+                                                long overskytendeTrekk = Skatteberegning
+                                                        .beregnOverskytendeTrekk(t, p, g);
+                                                assertTrue(overskytendeTrekk > 0L);
+                                            }
+                                        });
                             });
                 });
 

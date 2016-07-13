@@ -34,7 +34,7 @@ public class TrekkrutineLikhetstest {
 
             int maksDiff = 2;
             if (differanseErMerEnn(maksDiff, diff)
-                    & !kjenteFeilICobolRutinen(tabellnummer, periode, grunnlag)) {
+                    &! kjenteFeilICobolRutinen(tabellnummer, periode, grunnlag)) {
 
                 fail(String.format(
                         "Testen skal ikke ha avvik. %s, %s, grunnlag= %s, beregnet trekk= %s, trekk fra fil= %s, maks akseptert avvik= %s",

@@ -65,34 +65,37 @@ public class Skatteberegning {
     }
 
     static long beregnTrygdeavgift(Tabellnummer tabellnummer, double personInntektAar) {
-
         if (personInntektAar < Konstanter.AVG_FRI_TRYGDEAVGIFT) {
             return 0L;
         }
         if (tabellnummer.ikkeTrygdeavgift()) {
             return 0L;
         }
-        //TODO metodenavn
-        double trygdeavgift;
-        if (tabellnummer.lavSatsTrygdeavgift()) {
-            if (personInntektAar > Konstanter.LAV_GRENSE_TRYGDEAVGIFT) {
-                trygdeavgift = personInntektAar * Konstanter.LAV_TRYGDEAVG_PROSENT / 100;
-            } else {
-                trygdeavgift = (personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100;
-            }
-            return Math.round(trygdeavgift);
-        }
-        if (personInntektAar > Konstanter.HOY_GRENSE_TRYGDEAVGIFT) {
-            trygdeavgift = personInntektAar * Konstanter.HOY_TRYGDEAVG_PROSENT / 100;
-        } else {
-            trygdeavgift = (personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100;
-        }
 
-        return Math.round(trygdeavgift);
+        if (tabellnummer.lavSatsTrygdeavgift()) {
+            return beregnTrygdeavgiftLavSats(personInntektAar);
+        } else {
+            return beregnTrygdeavgiftHoySats(personInntektAar);
+        }
+    }
+
+    private static long beregnTrygdeavgiftLavSats(double personInntektAar) {
+        if (personInntektAar > Konstanter.LAV_GRENSE_TRYGDEAVGIFT) {
+            return Math.round(personInntektAar * Konstanter.LAV_TRYGDEAVG_PROSENT / 100);
+        } else {
+            return Math.round((personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100);
+        }
+    }
+
+    private static long beregnTrygdeavgiftHoySats(double personInntektAar) {
+        if (personInntektAar > Konstanter.HOY_GRENSE_TRYGDEAVGIFT) {
+            return Math.round(personInntektAar * Konstanter.HOY_TRYGDEAVG_PROSENT / 100);
+        } else {
+            return Math.round((personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100);
+        }
     }
 
     static long beregnOverskytendeTrekk(Tabellnummer tabellnummer, Periode periode, double avrundetTrekkgrunnlag) {
-
         if (periode.maxTrekkgrunnlag > avrundetTrekkgrunnlag) {
             return 0;
         }
@@ -101,7 +104,6 @@ public class Skatteberegning {
                 (avrundetTrekkgrunnlag - periode.maxTrekkgrunnlag) * tabellnummer.overskytendeProsent / 100d;
 
         return Math.round(overskytendeTrekk);
-
     }
 
 }

@@ -3,7 +3,6 @@ package ske.fastsetting.skatt.trekktabell;
 public class Trekkrutine {
 
     public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
-
         long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, trekkgrunnlag);
 
         if (overskytendeTrekk > 0)
@@ -34,7 +33,6 @@ public class Trekkrutine {
     Finner netto årsinntekt (alminneligInntekt)
     */
     private static long finnAlminneligInntektAar(Tabellnummer tabellnummer, long personInntektAar) {
-
         return personInntektAar
                 - Fradrag.beregnMinsteFradrag(tabellnummer, personInntektAar)
                 - tabellnummer.tabellFradrag
@@ -44,7 +42,6 @@ public class Trekkrutine {
     }
 
     private static long beregnSkatt(Tabellnummer tabellnummer, double personInntektAar, double alminneligInntektAar) {
-
         return Skatteberegning.beregnKommuneskatt(alminneligInntektAar)
                 + Skatteberegning.beregnFelleseskatt(tabellnummer, alminneligInntektAar)
                 + Skatteberegning.beregnTrinnskatt(tabellnummer, personInntektAar)
@@ -53,16 +50,11 @@ public class Trekkrutine {
     }
 
     private static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, double sumSkatt) {
-
         double trekkMedDesimaler = sumSkatt / periode.getTrekkPeriode(tabellnummer);
 
-        long trekkUtenDesimaler = 0L;
-        if (tabellnummer.tabelltype == Tabelltype.SJØ)
-            trekkUtenDesimaler = (long) Math.floor(trekkMedDesimaler);
-        else
-            trekkUtenDesimaler = Math.round(trekkMedDesimaler);
-
-        return trekkUtenDesimaler;
+        return tabellnummer.tabelltype == Tabelltype.SJØ ?
+                (long) Math.floor(trekkMedDesimaler) :
+                Math.round(trekkMedDesimaler);
     }
 
 }

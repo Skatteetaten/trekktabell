@@ -175,12 +175,12 @@ public enum Tabellnummer {
     TABELL_7170(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7170_7270),
     TABELL_7270(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE2_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7170_7270);
 
-    public final Tabelltype tabelltype;
-    public final long tabellFradrag;
-    public final long klasseFradrag;
-    public final String trygdeavgiftstype;
-    public final boolean trekk_i_12_mnd;
-    public final int overskytendeProsent;
+    final Tabelltype tabelltype;
+    final long tabellFradrag;
+    final long klasseFradrag;
+    final String trygdeavgiftstype;
+    final boolean trekk_i_12_mnd;
+    final int overskytendeProsent;
 
     Tabellnummer(Tabelltype tabelltype, long tabellFradrag, long klasseFradrag, String trygdeavgiftstype,
             boolean trekk_i_12_mnd, int overskytendeProsent) {
@@ -191,16 +191,17 @@ public enum Tabellnummer {
         this.trekk_i_12_mnd = trekk_i_12_mnd;
         this.overskytendeProsent = overskytendeProsent;
     }
-    public boolean isStandardFradrag() {
+
+    boolean isStandardFradrag() {
         return (tabelltype == Tabelltype.STANDARDFRADRAG ||
                 tabelltype == Tabelltype.SJØ ||
                 tabelltype == Tabelltype.FINNMARK);
     }
 
-    public boolean ikkeTrygdeavgift() {
+    boolean ikkeTrygdeavgift() {
         return trygdeavgiftstype.equals("Ingen");
     }
-    public boolean lavSatsTrygdeavgift() {
+    boolean lavSatsTrygdeavgift() {
         return trygdeavgiftstype.equals("Lav");
     }
 
