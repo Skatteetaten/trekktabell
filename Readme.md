@@ -17,7 +17,9 @@ I test-klassen TrekkrutineLikhetstest benyttes denne filen til å kontrollere at
 med trekket fra Cobol-programmet.
 
 Det er imidlertid enkelte avvik fra Cobol-programmet, og det er 2 årsaker til dette:
-1.     I Cobol-programmet ble de enkelte delskattene ikke avrundet før de ble summert sammen. Det korrekte er at disse skal avrundes hver for seg før summering, og dette gjøres i java-versjonen. Dette vil kunne utgjøre et avvik på inntil kr 2.
-2.     For de laveste beløpene på månedstabell for tabellnummer 7131P og 7132P var det en feil i beregningen av minstefradrag i Cobol-programmet. Dette er rettet i java-versjonen.
+1. I Cobol-programmet ble de enkelte delskattene ikke avrundet før de ble summert sammen. Det korrekte er at disse skal
+avrundes hver for seg før summering, og dette gjøres i java-versjonen. Dette vil kunne utgjøre et avvik på inntil kr 2.
+2. For de laveste beløpene på månedstabell for tabellnummer 7131P og 7132P var det en feil i beregningen av minstefradrag
+i Cobol-programmet. Dette er rettet i java-versjonen.
 
 Begge disse avvikene er håndtert i test-klassen TrekkrutineLikhetstest.
