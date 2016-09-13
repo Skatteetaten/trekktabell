@@ -99,16 +99,6 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerEnHelTabell() throws Exception {
-        HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7132, Periode.PERIODE_1_UKE);
-
-        assertTrue(heleTabellen.alleTrekk.size() > 0);
-        heleTabellen.alleTrekk.forEach((key, value) -> {
-            assertTrue(key >= value);
-        });
-    }
-
-    @Test
     public void kontrollerHeleTabellenAlle() throws Exception {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
