@@ -1,7 +1,10 @@
 <h1>Trekkrutine for beregning av forskuddstrekk</h1>
 
 Disse java-klassene beregner tabelltrekk for inntektsåret 2016, og vil erstatte Cobol-versjonen som gjør dette i dag.
+
 Det er metoden beregnTabelltrekk i klassen Trekkrutine som skal kalles når tabelltrekket skal beregnes.
+
+Ønsker man hele tabellen kalles metoden beregnHeleTabellen. Denne returnerer et objekt med alle trekkgrunnlag/trekk, samt den overskytende prosenten som hører til den aktuelle tabellen.
 
 For 2017 vil både Cobol- og java-versjonen bli tilgjengeliggjort, men fra 2018 vil trekkrutinen kun foreligge i java.
 
