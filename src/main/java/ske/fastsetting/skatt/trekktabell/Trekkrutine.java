@@ -1,5 +1,7 @@
 package ske.fastsetting.skatt.trekktabell;
 
+import java.util.*;
+
 public class Trekkrutine {
 
     public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
@@ -22,6 +24,25 @@ public class Trekkrutine {
             trekk = trekkgrunnlag;
 
         return trekk;
+    }
+
+    public static HeleTabellen beregnHeleTabellen(Tabellnummer tabellnummer, Periode periode) {
+
+        Map<Long, Long> alleTrekk = new LinkedHashMap<>();
+
+        for (long grunnlag = 0; grunnlag <= periode.maxTrekkgrunnlag; grunnlag += periode.avrunding) {
+            long trekk = beregnTabelltrekk(tabellnummer, periode, grunnlag);
+            if (trekk > 0) {
+                if (alleTrekk.isEmpty()) {
+                    if ((grunnlag - periode.avrunding) > 0) {
+                        alleTrekk.put(grunnlag - periode.avrunding, 0L);
+                    }
+                }
+                alleTrekk.put(grunnlag, trekk);
+            }
+        }
+
+        return new HeleTabellen(alleTrekk, tabellnummer.overskytendeProsent);
     }
 
     private static long finnAvrundetTrekkgrunnlag(Periode periode, long trekkgrunnlag) {

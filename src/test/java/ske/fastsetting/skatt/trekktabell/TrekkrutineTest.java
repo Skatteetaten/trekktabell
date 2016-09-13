@@ -6,7 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
@@ -94,6 +96,28 @@ public class TrekkrutineTest {
     public void konntrollerBeregningAvHoyGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftHoySats = Konstanter.beregnHoyGrenseTrygdeavgift();
         assertEquals(73884L, grenseTrygdeavgiftHoySats);
+    }
+
+    @Test
+    public void kontrollerEnHelTabell() throws Exception {
+        HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7132, Periode.PERIODE_1_UKE);
+
+        assertTrue(heleTabellen.alleTrekk.size() > 0);
+        heleTabellen.alleTrekk.forEach((key, value) -> {
+            assertTrue(key >= value);
+        });
+    }
+
+    @Test
+    public void kontrollerHeleTabellenAlle() throws Exception {
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            for (Periode periode : Periode.values()) {
+                HeleTabellen heleTabellen = Trekkrutine
+                        .beregnHeleTabellen(tabellnummer, periode);
+                assertTrue(heleTabellen.alleTrekk.size() > 100);
+                assertTrue(heleTabellen.overskytendeProsent > 30);
+            }
+        }
     }
 
 }
