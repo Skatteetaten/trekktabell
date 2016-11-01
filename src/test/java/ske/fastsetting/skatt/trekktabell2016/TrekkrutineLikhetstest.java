@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekktabell;
+package ske.fastsetting.skatt.trekktabell2016;
 
 import static org.junit.Assert.fail;
 
