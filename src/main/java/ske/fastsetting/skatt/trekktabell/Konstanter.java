@@ -5,48 +5,48 @@ public class Konstanter {
     /**
      * Inntektsåret dette systemet gjelder for.
      */
-    static final int AAR = 2016;
+    static final int AAR = 2017;
     /*
     Skattesatser for 2016
      */
 
     static final long
-            KLASSE1_VANLIG = 51750L,
-            KLASSE2_VANLIG = 76250L,
-            KLASSE1_FINNMARK = 67250L,
-            KLASSE2_FINNMARK = 91750L,
-            TRINN1 = 159800L,
-            TRINN2 = 224900L,
-            TRINN3 = 565400L,
-            TRINN4 = 909500L,
+            KLASSE1_VANLIG = 53150L,
+            KLASSE2_VANLIG = 78300L,
+            KLASSE1_FINNMARK = 68650L,
+            KLASSE2_FINNMARK = 93800L,
+            TRINN1 = 164100L,
+            TRINN2 = 230950L,
+            TRINN3 = 580650L,
+            TRINN4 = 934050L,
             LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
             HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
-            AVG_FRI_TRYGDEAVGIFT = 49650L,
+            AVG_FRI_TRYGDEAVGIFT = 54650L,
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 3520L,
-            MAX_ANV_MINSTE_FRADRAG = 80476L,
-            MAX_ANV_MINSTE_FRADRAG_PENSJ = 64768L,
+            MAX_ANV_MINSTE_FRADRAG = 83380L,
+            MAX_ANV_MINSTE_FRADRAG_PENSJ = 66000L,
             MIN_MINSTE_FRADRAG = 4000L,
-            MAX_MINSTE_FRADRAG = 91450L,
+            MAX_MINSTE_FRADRAG = 94750L,
             LONNSFRADRAG = 31800L,
             ANV_LONNSFRADRAG = 27984L,
             MAX_SJO_FRADRAG = 80000L;
 
     static final double
-            PROSENT_TRINN1 = 0.44d,
-            PROSENT_TRINN2 = 1.7d,
-            PROSENT_TRINN4 = 13.7d,
-            TRINNSKATT_PROSENT3 = 10.7d,
-            TRINNSKATT_PROSENT3_FINNMARK = 8.7d,
-            FELLES_SKATT_VANLIG = 10.55d,
-            FELLES_SKATT_FINNMARK = 7.05d,
+            PROSENT_TRINN1 = 0.93d,
+            PROSENT_TRINN2 = 2.41d,
+            TRINNSKATT_PROSENT3 = 11.52d,
+            TRINNSKATT_PROSENT3_FINNMARK = 9.52d,
+            PROSENT_TRINN4 = 14.52d,
+            FELLES_SKATT_VANLIG = 9.55d,
+            FELLES_SKATT_FINNMARK = 6.05d,
             SKATTORE = 14.45d,
             TRYGDE_PROSENT = 25d,
             LAV_TRYGDEAVG_PROSENT = 5.1d,
             HOY_TRYGDEAVG_PROSENT = 8.2d,
-            ANV_MINSTE_FRAD_PROSENT = 37.84d,
+            ANV_MINSTE_FRAD_PROSENT = 38.72d,
             ANV_MINSTE_FRAD_PROSENT_PENSJ = 25.52d,
-            MINSTE_FRAD_PROSENT = 43.0d,
+            MINSTE_FRAD_PROSENT = 44.0d,
             STFRADRAG_PROSENT = 10d,
             SJO_PROSENT = 30d;
 
