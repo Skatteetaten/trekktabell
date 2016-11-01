@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekktabell;
+package ske.fastsetting.skatt.trekktabell2017;
 
 public enum Periode {
     PERIODE_1_MAANED(12.12d, 10.5d,           12d, 11d,             12d, 10.5d, 100, 79800 ),
