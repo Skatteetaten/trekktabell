@@ -180,7 +180,7 @@ public enum Tabellnummer {
     final long klasseFradrag;
     final String trygdeavgiftstype;
     final boolean trekk_i_12_mnd;
-    final int overskytendeProsent;
+    public final int overskytendeProsent;
 
     Tabellnummer(Tabelltype tabelltype, long tabellFradrag, long klasseFradrag, String trygdeavgiftstype,
             boolean trekk_i_12_mnd, int overskytendeProsent) {
