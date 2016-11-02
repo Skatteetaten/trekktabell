@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
@@ -104,6 +105,17 @@ public class TrekkrutineTest {
                         .beregnHeleTabellen(tabellnummer, periode);
                 assertTrue(heleTabellen.alleTrekk.size() > 100);
                 assertTrue(heleTabellen.overskytendeProsent > 30);
+            }
+        }
+    }
+
+    @Test
+    public void kontrollerAtMaxEttTrekkgrunnlagMed0ITrekkVedHeleTabellen() throws Exception {
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            for (Periode periode : Periode.values()) {
+                HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnummer, periode);
+                final long antallMed0 = heleTabellen.alleTrekk.values().stream().filter(trekk -> trekk == 0).count();
+                assertTrue(antallMed0 < 2);
             }
         }
     }
