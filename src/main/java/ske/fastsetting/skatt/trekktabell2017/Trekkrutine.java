@@ -28,7 +28,7 @@ public class Trekkrutine {
 
     public static HeleTabellen beregnHeleTabellen(Tabellnummer tabellnummer, Periode periode) {
 
-        Map<Long, Long> alleTrekk = new LinkedHashMap<>();
+        LinkedHashMap<Long, Long> alleTrekk = new LinkedHashMap<>();
 
         for (long grunnlag = 0; grunnlag <= periode.maxTrekkgrunnlag; grunnlag += periode.avrunding) {
             long trekk = beregnTabelltrekk(tabellnummer, periode, grunnlag);
