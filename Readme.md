@@ -2,6 +2,8 @@
 
 Disse java-klassene beregner tabelltrekk for inntektsåret 2017.
 
+Programmeringen bygger på skatteregler for 2017 etter Regjeringens forslag til statsbudsjett.
+
 Det er metoden beregnTabelltrekk i klassen Trekkrutine som skal kalles når tabelltrekket skal beregnes.
 
 Ønsker man hele tabellen kalles metoden beregnHeleTabellen. Denne returnerer et objekt med alle trekkgrunnlag/trekk, samt den overskytende prosenten som hører til den aktuelle tabellen.
