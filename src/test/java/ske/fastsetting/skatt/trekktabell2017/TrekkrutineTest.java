@@ -120,4 +120,14 @@ public class TrekkrutineTest {
         }
     }
 
+    @Test
+    public void kontrollerEndredeOverskytendeProsenter() throws Exception {
+        HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED);
+        assertEquals(heleTabellen.overskytendeProsent,53);
+        heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7300, Periode.PERIODE_1_MAANED);
+        assertEquals(heleTabellen.overskytendeProsent,53);
+        heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_6300, Periode.PERIODE_1_MAANED);
+        assertEquals(heleTabellen.overskytendeProsent,49);
+    }
+
 }
