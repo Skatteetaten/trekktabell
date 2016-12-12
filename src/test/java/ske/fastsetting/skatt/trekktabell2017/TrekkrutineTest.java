@@ -130,4 +130,11 @@ public class TrekkrutineTest {
         assertEquals(heleTabellen.overskytendeProsent,49);
     }
 
+    @Test
+    public void kontrollerAvrlundingVedOverskytedeTrekk() throws Exception {
+        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 89700);
+        long beregnetTrekk2 = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 89799);
+        assertEquals(beregnetTrekk, beregnetTrekk2);
+    }
+
 }

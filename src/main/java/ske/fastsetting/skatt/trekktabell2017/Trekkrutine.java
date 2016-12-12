@@ -5,12 +5,12 @@ import java.util.*;
 public class Trekkrutine {
 
     public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
-        long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, trekkgrunnlag);
+        long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(periode, trekkgrunnlag);
+
+        long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
 
         if (overskytendeTrekk > 0)
-            trekkgrunnlag = periode.maxTrekkgrunnlag;
-
-        long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(periode, trekkgrunnlag);
+            avrundetTrekkgrunnlag = periode.maxTrekkgrunnlag;
 
         long personInntektAar = Math.round(avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer));
 
