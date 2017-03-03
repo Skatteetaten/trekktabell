@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aleksanderaleksic/trekktabell-swift.svg?branch=master)](https://travis-ci.org/aleksanderaleksic/trekktabell-swift)
+
 # trekktabell-swift
 		
 ## Trekkrutine for beregning av forskuddstrekk#
