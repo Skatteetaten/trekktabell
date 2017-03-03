@@ -1,10 +1,6 @@
 # trekktabell-swift
-
-[![CI Status](http://img.shields.io/travis/aleksanderaleksic/trekktabell-swift.svg?style=flat)](https://travis-ci.org/aleksanderaleksic/trekktabell-swift)
-[![Version](https://img.shields.io/cocoapods/v/trekktabell-swift.svg?style=flat)](http://cocoapods.org/pods/trekktabell-swift)
-[![Platform](https://img.shields.io/cocoapods/p/trekktabell-swift.svg?style=flat)](http://cocoapods.org/pods/trekktabell-swift)
 		
-# Trekkrutine for beregning av forskuddstrekk#
+## Trekkrutine for beregning av forskuddstrekk#
 
 Dette biblioteket beregner tabelltrekk for inntektsåret 2017.
 
@@ -17,11 +13,7 @@ Klassen Konstanter inneholder skattesatsene for 2017.
 Denne vil bli oppdatert ved ny årsversjon
 
 ## Installasjon
-trekktabell-swift er tilgjengelig gjennom [CocoaPods](http://cocoapods.org) for å installere
-legg denne linjen til i PodFile:
-		`pod "trekktabell-swift"`
-og kjør deretter kommandoen:
-		`pod install`
+Cocoapods er tiltenkt men ikke påbegynt
 
 ## Forket prosjekt
 Dette bilblioteket er basert på [tabelltrekk-java](https://github.com/Skatteetaten/trekktabell) men er skrevet om til 
