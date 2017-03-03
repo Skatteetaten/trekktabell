@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode8.0.1
+xcode_project: tabelltrekk.xcworkspace
+xcode_scheme: tabelltrekk
+xcode_sdk: iphonesimulator10.2
