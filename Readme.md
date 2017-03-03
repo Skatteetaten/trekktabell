@@ -11,3 +11,6 @@ Det er metoden beregnTabelltrekk i klassen Trekkrutine som skal kalles når tabe
 Klassen Konstanter inneholder skattesatsene for 2017.
 Ved normale endringer i skattesatsene, vil det kun være i denne klassen det må rettes ved ny årsversjon.
 
+<h2>Forket prosjekt</h2>
+Dette bilblioteket er basert på [tabelltrekk-java](https://github.com/Skatteetaten/trekktabell) men er skrevet om til 
+swift 3 slik at det kan brukes i IOS
