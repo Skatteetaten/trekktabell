@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aleksanderaleksic/trekktabell-swift.svg?branch=master)](https://travis-ci.org/aleksanderaleksic/trekktabell-swift)
+
 <h1>Trekkrutine for beregning av forskuddstrekk</h1>
 
 Disse java-klassene beregner tabelltrekk for inntektsåret 2017.
