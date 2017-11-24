@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekktabell2017;
+package ske.fastsetting.skatt.trekktabell2018;
 
 import org.junit.Test;
 
@@ -11,8 +11,8 @@ import static org.junit.Assert.fail;
 public class TrekkrutineLikhetstest {
 
     @Test
-    public void likhetstest_mot_tidligere_system() throws Exception {
-        URL filSti = getClass().getResource("/trekktabellFraCobol.txt");
+    public void likhetstest_mot_annen_kilde() throws Exception {
+        URL filSti = getClass().getResource("/trekktabellerFraAnnenKilde.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader(filSti.getPath()));
         String linje;

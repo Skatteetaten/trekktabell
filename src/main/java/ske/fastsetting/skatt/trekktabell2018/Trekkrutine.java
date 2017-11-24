@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekktabell2017;
+package ske.fastsetting.skatt.trekktabell2018;
 
 import java.util.*;
 
