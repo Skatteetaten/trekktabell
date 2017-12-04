@@ -196,6 +196,36 @@ public class TrekkrutineTest {
         System.out.println("Skrevet til fil : " + teller);
     }
 
+    @Test
+    @Ignore
+    public void trekktabellerTilSkatteetatenNo() throws Exception {
+        FileWriter fw = new FileWriter(new File("alleTabelleneIEnFilTilSkatteetatenNo.txt"));
+        int teller = 0;
+
+        for (Tabellnummer tabellnr : Tabellnummer.values()) {
+            for (Periode periode : Periode.values()) {
+
+                HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnr, periode);
+                char per = finnPeriode(periode);
+                char tabType = finnTabelltype(tabellnr.tabelltype);
+
+                LinkedHashMap<Long, Long> alleTrekk = heleTabellen.alleTrekk;
+
+                for (Long grl : alleTrekk.keySet()) {
+                    Long trekk = alleTrekk.get(grl);
+                    fw.write(
+                        tabellnr.name().substring(7, 11) + per + tabType + String.format("%05d", grl) + String
+                            .format("%05d", trekk) + "\r\n");
+                    teller++;
+                }
+            }
+        }
+
+        fw.close();
+
+        System.out.println("Skrevet til fil : " + teller);
+    }
+
     private char finnPeriode(Periode periode) {
         switch (periode) {
         case PERIODE_1_MAANED:
