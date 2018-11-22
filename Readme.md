@@ -10,6 +10,4 @@ Det er metoden beregnTabelltrekk i klassen Trekkrutine som skal kalles når tabe
 <h2>Årlige endringer</h2>
 Endringene i skattesatsene for 2019 er lagt inn i klassen Konstanter.
 <br>
-Vi har også økt grensen for når man skal benytte den overskytende prosenten for de forskjellige inntektsperiodene. Dette er lagt inn i klassen Periode.
-<br>
 I de andre klassene er det ingen endringer.
