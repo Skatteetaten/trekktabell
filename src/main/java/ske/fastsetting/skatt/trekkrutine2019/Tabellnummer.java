@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekktabell2019;
+package ske.fastsetting.skatt.trekkrutine2019;
 
 public enum Tabellnummer {
     TABELL_7100(Tabelltype.VANLIG, 0L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_VANLIG),

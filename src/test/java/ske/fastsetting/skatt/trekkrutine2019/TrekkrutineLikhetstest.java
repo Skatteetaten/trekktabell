@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekktabell2019;
+package ske.fastsetting.skatt.trekkrutine2019;
 
 import org.junit.Test;
 
