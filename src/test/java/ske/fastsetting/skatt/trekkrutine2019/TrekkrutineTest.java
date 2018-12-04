@@ -202,20 +202,23 @@ public class TrekkrutineTest {
         int teller = 0;
 
         for (Tabellnummer tabellnr : Tabellnummer.values()) {
-            for (Periode periode : Periode.values()) {
+            if (aktuellTabell(tabellnr)) {
+                for (Periode periode : Periode.values()) {
+                    if (aktuellPeriode(tabellnr, periode)) {
+                        HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnr, periode);
+                        char per = finnPeriode(periode);
+                        char tabType = finnTabelltype(tabellnr.tabelltype);
 
-                HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnr, periode);
-                char per = finnPeriode(periode);
-                char tabType = finnTabelltype(tabellnr.tabelltype);
+                        LinkedHashMap<Long, Long> alleTrekk = heleTabellen.alleTrekk;
 
-                LinkedHashMap<Long, Long> alleTrekk = heleTabellen.alleTrekk;
-
-                for (Long grl : alleTrekk.keySet()) {
-                    Long trekk = alleTrekk.get(grl);
-                    fw.write(
-                        tabellnr.name().substring(7, 11) + per + tabType + String.format("%05d", grl) + String
-                            .format("%05d", trekk) + "\r\n");
-                    teller++;
+                        for (Long grl : alleTrekk.keySet()) {
+                            Long trekk = alleTrekk.get(grl);
+                            fw.write(
+                                tabellnr.name().substring(7, 11) + per + tabType + String.format("%05d", grl) + String
+                                    .format("%05d", trekk) + "\r\n");
+                            teller++;
+                        }
+                    }
                 }
             }
         }
@@ -250,5 +253,25 @@ public class TrekkrutineTest {
             return '1';
         }
         return '0';
+    }
+
+    private boolean aktuellTabell(Tabellnummer tabellnummer) {
+        String tabellnavn = tabellnummer.name();
+        if (tabellnavn.startsWith("TABELL_72") || tabellnavn.startsWith("TABELL_02") || tabellnavn.startsWith("TABELL_64") ||
+            tabellnavn.startsWith("TABELL_66") || tabellnavn.startsWith("TABELL_68") || tabellnavn.startsWith("TABELL_74") ||
+            tabellnavn.startsWith("TABELL_76") || tabellnavn.startsWith("TABELL_78") ) {
+            return false;
+        }
+        return true;
+    }
+    private boolean aktuellPeriode(Tabellnummer tabellnummer, Periode periode) {
+        if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) {
+            return periode == Periode.PERIODE_1_MAANED;
+        }
+        if (tabellnummer.tabelltype == Tabelltype.SJØ) {
+            return periode == Periode.PERIODE_1_MAANED || periode == Periode.PERIODE_14_DAGER ||
+                periode == Periode.PERIODE_1_UKE;
+        }
+        return true;
     }
 }
