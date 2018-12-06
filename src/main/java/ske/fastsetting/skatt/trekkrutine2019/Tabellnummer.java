@@ -1,9 +1,5 @@
 package ske.fastsetting.skatt.trekkrutine2019;
 
-import java.util.EnumSet;
-
-import javafx.scene.control.Tab;
-
 public enum Tabellnummer {
     TABELL_7100(Tabelltype.VANLIG, 0L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_VANLIG),
     TABELL_7101(Tabelltype.VANLIG, 4000L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_VANLIG),
