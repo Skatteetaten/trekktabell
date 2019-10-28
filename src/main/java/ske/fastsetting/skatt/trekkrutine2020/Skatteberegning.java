@@ -23,9 +23,9 @@ public class Skatteberegning {
 
         double prosentTrinn3;
         if (tabellnummer.tabelltype == Tabelltype.FINNMARK) {
-            prosentTrinn3 = Konstanter.TRINNSKATT_PROSENT3_FINNMARK;
+            prosentTrinn3 = Konstanter.PROSENT_TRINN3_FINNMARK;
         } else {
-            prosentTrinn3 = Konstanter.TRINNSKATT_PROSENT3;
+            prosentTrinn3 = Konstanter.PROSENT_TRINN3;
         }
 
         if (personInntektAar < Konstanter.TRINN2) {
