@@ -1,5 +1,6 @@
 package ske.fastsetting.skatt.trekkrutine2020;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
