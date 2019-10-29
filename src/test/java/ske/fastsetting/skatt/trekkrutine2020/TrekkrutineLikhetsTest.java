@@ -9,8 +9,9 @@ import java.net.URL;
 
 import static org.junit.Assert.fail;
 
-public class TrekkrutineLikhetstest {
+public class TrekkrutineLikhetsTest {
 
+    @Ignore
     @Test
     public void likhetstest_mot_annen_kilde() throws Exception {
         URL filSti = getClass().getResource("/trekktabellerFraAnnenKilde.txt");
