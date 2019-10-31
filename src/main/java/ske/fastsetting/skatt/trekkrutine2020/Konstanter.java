@@ -1,30 +1,31 @@
-package ske.fastsetting.skatt.trekkrutine2019;
+package ske.fastsetting.skatt.trekkrutine2020;
 
 public class Konstanter {
 
     /**
      * Inntektsåret dette systemet gjelder for.
      */
-    static final int AAR = 2019;
+    static final int AAR = 2020;
 
     static final long
-            KLASSE1_VANLIG = 56550L,
-            KLASSE2_VANLIG = 56550L,
-            KLASSE1_FINNMARK = 72050L,
-            KLASSE2_FINNMARK = 72050L,
-            TRINN1 = 174500L,
-            TRINN2 = 245650L,
-            TRINN3 = 617500L,
-            TRINN4 = 964800L,
+
+            KLASSE1_VANLIG = 51300L,
+            KLASSE2_VANLIG = 51300L,
+            KLASSE1_FINNMARK = 66800L, // Personfradrag + finnmarksfradrag
+            KLASSE2_FINNMARK = 66800L,
+            TRINN1 = 180800L,
+            TRINN2 = 254500L,
+            TRINN3 = 639750L,
+            TRINN4 = 999550L,
             LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
             HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
             AVG_FRI_TRYGDEAVGIFT = 54650L,
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 3520L,
-            MAX_ANV_MINSTE_FRADRAG = 88704L,
-            MAX_ANV_MINSTE_FRADRAG_PENSJ = 74844L,
+            MAX_ANV_MINSTE_FRADRAG = 91916L, // Lønn
+            MAX_ANV_MINSTE_FRADRAG_PENSJ = 76956L,
             MIN_MINSTE_FRADRAG = 4000L,
-            MAX_MINSTE_FRADRAG = 100800L,
+            MAX_MINSTE_FRADRAG = 104450L,
             LONNSFRADRAG = 31800L,
             ANV_LONNSFRADRAG = 27984L,
             MAX_SJO_FRADRAG = 80000L;
@@ -32,12 +33,12 @@ public class Konstanter {
     static final double
             PROSENT_TRINN1 = 1.9d,
             PROSENT_TRINN2 = 4.2d,
-            TRINNSKATT_PROSENT3 = 13.2d,
-            TRINNSKATT_PROSENT3_FINNMARK = 11.2d,
+            PROSENT_TRINN3 = 13.2d,
+            PROSENT_TRINN3_FINNMARK = 11.2d,
             PROSENT_TRINN4 = 16.2d,
-            FELLES_SKATT_VANLIG = 7.85d,
-            FELLES_SKATT_FINNMARK = 4.35d,
-            SKATTORE = 14.15d,
+            FELLES_SKATT_VANLIG = 8.45d,
+            FELLES_SKATT_FINNMARK = 4.95d,
+            SKATTORE = 13.55d,
             TRYGDE_PROSENT = 25d,
             LAV_TRYGDEAVG_PROSENT = 5.1d,
             HOY_TRYGDEAVG_PROSENT = 8.2d,
@@ -48,7 +49,8 @@ public class Konstanter {
             SJO_PROSENT = 30d;
 
     /*
-    Det som avgjør den overskytende prosenten er hva som som betales i trygdeavgift, antall trekkmåneder og om det skal benyttes finnmark-satser eller ikke.
+    Det som avgjør den overskytende prosenten, er hva som som betales i trygdeavgift, antall trekkmåneder og om
+    det skal benyttes finnmark-satser eller ikke.
      */
 
     static final int

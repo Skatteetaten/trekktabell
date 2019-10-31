@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekkrutine2019;
+package ske.fastsetting.skatt.trekkrutine2020;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -138,6 +138,7 @@ public class TrekkrutineTest {
         long beregnetTrekk2 = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109799);
         assertEquals(beregnetTrekk, beregnetTrekk2);
     }
+
 
     @Test
     @Ignore

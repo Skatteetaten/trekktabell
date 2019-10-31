@@ -1,5 +1,6 @@
-package ske.fastsetting.skatt.trekkrutine2019;
+package ske.fastsetting.skatt.trekkrutine2020;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -8,7 +9,7 @@ import java.net.URL;
 
 import static org.junit.Assert.fail;
 
-public class TrekkrutineLikhetstest {
+public class TrekkrutineLikhetsTest {
 
     @Test
     public void likhetstest_mot_annen_kilde() throws Exception {
