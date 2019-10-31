@@ -2,9 +2,7 @@ package ske.fastsetting.skatt.trekkrutine2020;
 
 public enum Tabellnummer {
     /*
-       Argument nr 2 (eller nr 1 dersom man begynner å telle på 0), er "tabellFradrag". Uten å gå i detaljer om hvordan
-       dette brukes (den interesserte leser kan kodegranske), kan vi si at tabellfradraget er et tabellfradrag når argument 2
-       er positivt, og et tabelltillegg når argument 2 er negativt.
+       Når argument nr 2 er et positivt tall, er det et tabellfradrag; når negativt er det et tabelltillegg.
      */
     TABELL_7100(Tabelltype.VANLIG,     0L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_VANLIG),
     TABELL_7101(Tabelltype.VANLIG, 10000L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_VANLIG),

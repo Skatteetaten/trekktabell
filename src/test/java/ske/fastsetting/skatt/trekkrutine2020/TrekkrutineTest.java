@@ -142,34 +142,6 @@ public class TrekkrutineTest {
 
     @Test
     @Ignore
-    public void forskningAvvikCOBOLJava2020() throws Exception {
-
-        Tabellnummer tabellnummer  = Tabellnummer.TABELL_7119P;
-        Periode      periode       = Periode.PERIODE_1_MAANED;
-
-        /*
-        long         trekkgrunnlag = 26500;
-        long         cobolTrekk    = 1856L;
-        long         trekkgrunnlag = 26600;
-        long         cobolTrekk    = 1890L;
-        */
-        long         trekkgrunnlag = 26700;
-        long         cobolTrekk    = 1924L;
-
-        System.out.println("TrekkrutineTest.forskningAvvikCOBOLJava() tabellnummer  " + tabellnummer);
-        System.out.println("TrekkrutineTest.forskningAvvikCOBOLJava() periode       " + periode);
-        System.out.println("TrekkrutineTest.forskningAvvikCOBOLJava() trekkgrunnlag " + trekkgrunnlag);
-
-        long javaTrekk  = Trekkrutine.beregnTabelltrekk(tabellnummer, periode, trekkgrunnlag);
-        System.out.println("TrekkrutineTest.forskningAvvikCOBOLJava() cobolTrekk " + cobolTrekk);
-        System.out.println("TrekkrutineTest.forskningAvvikCOBOLJava() javaTrekk " + javaTrekk);
-
-        assertEquals(cobolTrekk, javaTrekk);
-    }
-
-
-    @Test
-    @Ignore
     public void trekktabellerTilManuellKontroll() throws Exception {
         FileWriter fw = new FileWriter(new File("alleTabellerFraJava.txt"));
 
