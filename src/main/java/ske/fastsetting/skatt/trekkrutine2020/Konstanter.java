@@ -10,9 +10,7 @@ public class Konstanter {
     static final long
 
             KLASSE1_VANLIG = 51300L,
-            KLASSE2_VANLIG = 51300L,
             KLASSE1_FINNMARK = 66800L, // Personfradrag + finnmarksfradrag
-            KLASSE2_FINNMARK = 66800L,
             TRINN1 = 180800L,
             TRINN2 = 254500L,
             TRINN3 = 639750L,
