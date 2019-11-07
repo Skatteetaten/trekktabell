@@ -2,11 +2,6 @@ package ske.fastsetting.skatt.trekkrutine2020;
 
 public class Konstanter {
 
-    /**
-     * Inntektsåret dette systemet gjelder for.
-     */
-    static final int AAR = 2020;
-
     static final long
 
             KLASSE1_VANLIG = 51300L,
@@ -54,21 +49,21 @@ public class Konstanter {
     static final int
             OVERSKYTENDE_PROSENT_VANLIG = 54,
             OVERSKYTENDE_PROSENT_PENSJONIST = 48,
-            OVERSKYTENDE_PROSENT_7300_7400 = 54,
-            OVERSKYTENDE_PROSENT_7350_7450 = 47,
-            OVERSKYTENDE_PROSENT_7500_7600 = 39,
-            OVERSKYTENDE_PROSENT_7550_7650 = 44,
-            OVERSKYTENDE_PROSENT_7700_7800 = 44,
-            OVERSKYTENDE_PROSENT_0100_0200 = 39,
-            OVERSKYTENDE_PROSENT_0101_0201 = 47,
-            OVERSKYTENDE_PROSENT_6300_6400 = 50,
-            OVERSKYTENDE_PROSENT_6350_6450 = 43,
-            OVERSKYTENDE_PROSENT_6500_6600 = 35,
-            OVERSKYTENDE_PROSENT_6550_6650 = 40,
-            OVERSKYTENDE_PROSENT_6700_6800 = 40,
-            OVERSKYTENDE_PROSENT_7150_7250 = 47,
-            OVERSKYTENDE_PROSENT_7160_7260 = 39,
-            OVERSKYTENDE_PROSENT_7170_7270 = 44;
+            OVERSKYTENDE_PROSENT_7300 = 54,
+            OVERSKYTENDE_PROSENT_7350 = 47,
+            OVERSKYTENDE_PROSENT_7500 = 39,
+            OVERSKYTENDE_PROSENT_7550 = 44,
+            OVERSKYTENDE_PROSENT_7700 = 44,
+            OVERSKYTENDE_PROSENT_0100 = 39,
+            OVERSKYTENDE_PROSENT_0101 = 47,
+            OVERSKYTENDE_PROSENT_6300 = 50,
+            OVERSKYTENDE_PROSENT_6350 = 43,
+            OVERSKYTENDE_PROSENT_6500 = 35,
+            OVERSKYTENDE_PROSENT_6550 = 40,
+            OVERSKYTENDE_PROSENT_6700 = 40,
+            OVERSKYTENDE_PROSENT_7150 = 47,
+            OVERSKYTENDE_PROSENT_7160 = 39,
+            OVERSKYTENDE_PROSENT_7170 = 44;
 
 
     static long beregnLavGrenseTrygdeavgift() {

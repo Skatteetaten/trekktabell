@@ -76,24 +76,24 @@ public enum Tabellnummer {
     TABELL_7132P(Tabelltype.PENSJONIST,-130000L, Konstanter.KLASSE1_VANLIG, "Lav", false, Konstanter.OVERSKYTENDE_PROSENT_PENSJONIST),
     TABELL_7133P(Tabelltype.PENSJONIST,-140000L, Konstanter.KLASSE1_VANLIG, "Lav", false, Konstanter.OVERSKYTENDE_PROSENT_PENSJONIST),
 
-    TABELL_7300(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_7300_7400),
-    TABELL_7350(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_7350_7450),
-    TABELL_7500(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_7500_7600),
-    TABELL_7550(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7550_7650),
-    TABELL_7700(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Lav", true, Konstanter.OVERSKYTENDE_PROSENT_7700_7800),
+    TABELL_7300(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_7300),
+    TABELL_7350(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_7350),
+    TABELL_7500(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_7500),
+    TABELL_7550(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7550),
+    TABELL_7700(Tabelltype.STANDARDFRADRAG, 0L, Konstanter.KLASSE1_VANLIG, "Lav", true, Konstanter.OVERSKYTENDE_PROSENT_7700),
 
-    TABELL_6300(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_6300_6400),
-    TABELL_6350(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_6350_6450),
-    TABELL_6500(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_6500_6600),
-    TABELL_6550(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_6550_6650),
-    TABELL_6700(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Lav", true, Konstanter.OVERSKYTENDE_PROSENT_6700_6800),
+    TABELL_6300(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Høy", false, Konstanter.OVERSKYTENDE_PROSENT_6300),
+    TABELL_6350(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_6350),
+    TABELL_6500(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_6500),
+    TABELL_6550(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_6550),
+    TABELL_6700(Tabelltype.FINNMARK, 0L, Konstanter.KLASSE1_FINNMARK, "Lav", true, Konstanter.OVERSKYTENDE_PROSENT_6700),
 
-    TABELL_0100(Tabelltype.SJØ, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_0100_0200),
-    TABELL_0101(Tabelltype.SJØ, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_0101_0201),
+    TABELL_0100(Tabelltype.SJØ, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_0100),
+    TABELL_0101(Tabelltype.SJØ, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_0101),
 
-    TABELL_7150(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_7150_7250),
-    TABELL_7160(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_7160_7260),
-    TABELL_7170(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7170_7270);
+    TABELL_7150(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Høy", true, Konstanter.OVERSKYTENDE_PROSENT_7150),
+    TABELL_7160(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", true, Konstanter.OVERSKYTENDE_PROSENT_7160),
+    TABELL_7170(Tabelltype.SPESIAL, 0L, Konstanter.KLASSE1_VANLIG, "Ingen", false, Konstanter.OVERSKYTENDE_PROSENT_7170);
 
     final Tabelltype tabelltype;
     final long tabellFradrag;
