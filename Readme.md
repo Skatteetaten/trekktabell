@@ -12,6 +12,8 @@ Endringene i skattesatsene for 2020 er lagt inn i klassen `Konstanter`.
 
 For 2020 er også tabellsprangene endret, og det er derfor også endringer i klassen `Tabellnummer`.
 
+Vi har også fjernet trekktabellene for klasse 2 fra koden.
+
 I de andre klassene er det ingen endringer, bortsett fra at årstall i pakkenavnet er endret fra 2019 til 2020.
 
 ArtifactId i pom-filen er også endret fra 2019 til 2020.
