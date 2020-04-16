@@ -12,4 +12,6 @@ wiki/*
 # Cucumber reatures
 *.feature
 
-/.project
+.classpath
+.project
+.settings
