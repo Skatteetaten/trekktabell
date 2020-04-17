@@ -20,12 +20,28 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
+        <version>3.8.0</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <release>11</release>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
       </plugin>
     </plugins>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>releases-nexus3</id>
+      <url>https://nexus.sits.no/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots-nexus3</id>
+      <name>Internal Snapshots</name>
+      <url>https://nexus.sits.no/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>

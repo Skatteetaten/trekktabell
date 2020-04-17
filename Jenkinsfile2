@@ -1,0 +1,29 @@
+#!/usr/bin/env groovy
+
+def scriptVersion = 'v7'
+def sonarQubeUrl = 'http://sonarqube-sofus-build.utv.paas.skead.no'
+
+def overrides = [
+  iqOrganizationName: 'Team Forskudd',
+  iqCredentialsId: 'forskudd-iq',
+  javaVersion: 11,
+  failOnCheckstyleViolation: false,
+  piTests: false,
+  openShiftBuild: false,
+  sonarQube: true,
+  sonarQubeUrl: sonarQubeUrl,
+  versionStrategy: [
+    [branch: '2016', versionHint: '2016', strict: true],
+    [branch: '2017', versionHint: '2017', strict: true],
+    [branch: '2018', versionHint: '2018', strict: true],
+    [branch: '2019', versionHint: '2019', strict: true],
+    [branch: 'master', versionHint: '2020', strict: true]
+  ]
+]
+
+def jenkinsfile
+fileLoader.withGit('https://git.aurora.skead.no/scm/ao/aurora-pipeline-scripts.git', scriptVersion) {
+  jenkinsfile = fileLoader.load('templates/leveransepakke')
+}
+
+def props=jenkinsfile.run(scriptVersion, overrides)
