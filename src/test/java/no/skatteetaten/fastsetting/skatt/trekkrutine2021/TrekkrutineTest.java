@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekkrutine2020;
+package no.skatteetaten.fastsetting.skatt.trekkrutine2021;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
