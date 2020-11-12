@@ -90,13 +90,13 @@ public class TrekkrutineTest {
     @Test
     public void kontrollerBeregningAvLavGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftLavSats = Konstanter.beregnLavGrenseTrygdeavgift();
-        assertEquals(68656L, grenseTrygdeavgiftLavSats);
+        assertEquals(74937L, grenseTrygdeavgiftLavSats);
     }
 
     @Test
     public void kontrollerBeregningAvHoyGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftHoySats = Konstanter.beregnHoyGrenseTrygdeavgift();
-        assertEquals(81324L, grenseTrygdeavgiftHoySats);
+        assertEquals(88765L, grenseTrygdeavgiftHoySats);
     }
 
     @Test
