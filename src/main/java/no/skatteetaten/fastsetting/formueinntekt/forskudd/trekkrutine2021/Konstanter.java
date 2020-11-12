@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.skatt.trekkrutine2021;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2021;
 
 public class Konstanter {
 
