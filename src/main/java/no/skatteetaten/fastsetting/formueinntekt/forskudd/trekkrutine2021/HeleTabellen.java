@@ -1,4 +1,4 @@
-package ske.fastsetting.skatt.trekkrutine2020;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2021;
 
 import java.util.LinkedHashMap;
 

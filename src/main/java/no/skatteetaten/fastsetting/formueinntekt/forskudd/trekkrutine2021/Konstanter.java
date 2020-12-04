@@ -1,43 +1,43 @@
-package ske.fastsetting.skatt.trekkrutine2020;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2021;
 
 public class Konstanter {
 
     static final long
 
-            KLASSE1_VANLIG = 51300L,
-            KLASSE1_FINNMARK = 66800L, // Personfradrag + finnmarksfradrag
-            TRINN1 = 180800L,
-            TRINN2 = 254500L,
-            TRINN3 = 639750L,
-            TRINN4 = 999550L,
+            KLASSE1_VANLIG = 52450L,
+            KLASSE1_FINNMARK = 67950L, // Personfradrag + finnmarksfradrag
+            TRINN1 = 184800L,
+            TRINN2 = 260100L,
+            TRINN3 = 651250L,
+            TRINN4 = 1021550L,
             LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
             HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
-            AVG_FRI_TRYGDEAVGIFT = 54650L,
+            AVG_FRI_TRYGDEAVGIFT = 59650L,
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 3520L,
-            MAX_ANV_MINSTE_FRADRAG = 91916L, // Lønn
-            MAX_ANV_MINSTE_FRADRAG_PENSJ = 76956L,
+            MAX_ANV_MINSTE_FRADRAG = 93940L, // Lønn
+            MAX_ANV_MINSTE_FRADRAG_PENSJ = 78056L,
             MIN_MINSTE_FRADRAG = 4000L,
-            MAX_MINSTE_FRADRAG = 104450L,
+            MAX_MINSTE_FRADRAG = 106750L,
             LONNSFRADRAG = 31800L,
             ANV_LONNSFRADRAG = 27984L,
             MAX_SJO_FRADRAG = 80000L;
 
     static final double
-            PROSENT_TRINN1 = 1.9d,
-            PROSENT_TRINN2 = 4.2d,
+            PROSENT_TRINN1 = 1.7d,
+            PROSENT_TRINN2 = 4.0d,
             PROSENT_TRINN3 = 13.2d,
             PROSENT_TRINN3_FINNMARK = 11.2d,
             PROSENT_TRINN4 = 16.2d,
-            FELLES_SKATT_VANLIG = 8.45d,
-            FELLES_SKATT_FINNMARK = 4.95d,
-            SKATTORE = 13.55d,
+            FELLES_SKATT_VANLIG = 7.15d,
+            FELLES_SKATT_FINNMARK = 3.65d,
+            SKATTORE = 14.85d,
             TRYGDE_PROSENT = 25d,
             LAV_TRYGDEAVG_PROSENT = 5.1d,
             HOY_TRYGDEAVG_PROSENT = 8.2d,
-            ANV_MINSTE_FRAD_PROSENT = 39.6d,
-            ANV_MINSTE_FRAD_PROSENT_PENSJ = 27.28d,
-            MINSTE_FRAD_PROSENT = 45.0d,
+            ANV_MINSTE_FRAD_PROSENT = 40.48d,
+            ANV_MINSTE_FRAD_PROSENT_PENSJ = 28.16d,
+            MINSTE_FRAD_PROSENT = 46.0d,
             STFRADRAG_PROSENT = 10d,
             SJO_PROSENT = 30d;
 
