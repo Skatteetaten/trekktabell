@@ -23,7 +23,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void trekket_skal_vaere_mindre_eller_lik_trekkgrunnlag2() throws Exception {
+    public void trekket_skal_vaere_mindre_eller_lik_trekkgrunnlag2() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (long trekkgrunnlag = 10L; trekkgrunnlag < 1000L; trekkgrunnlag += 166) {
@@ -35,7 +35,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void skal_ikke_ha_trygdeavgift() throws Exception {
+    public void skal_ikke_ha_trygdeavgift() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (double inntekt = 10d; inntekt < 1000000L; inntekt += 16666) {
                 if (tabellnummer.ikkeTrygdeavgift()) {
@@ -47,7 +47,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void overskytende_trekk_skal_vaere_storre_enn_0() throws Exception {
+    public void overskytende_trekk_skal_vaere_storre_enn_0() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (double trekkgrunnlag = 1000L; trekkgrunnlag < 100000L; trekkgrunnlag += 166) {
@@ -88,19 +88,19 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerBeregningAvLavGrenseTrygdeavgift() throws Exception {
+    public void kontrollerBeregningAvLavGrenseTrygdeavgift() {
         long grenseTrygdeavgiftLavSats = Konstanter.beregnLavGrenseTrygdeavgift();
         assertEquals(74937L, grenseTrygdeavgiftLavSats);
     }
 
     @Test
-    public void kontrollerBeregningAvHoyGrenseTrygdeavgift() throws Exception {
+    public void kontrollerBeregningAvHoyGrenseTrygdeavgift() {
         long grenseTrygdeavgiftHoySats = Konstanter.beregnHoyGrenseTrygdeavgift();
         assertEquals(88765L, grenseTrygdeavgiftHoySats);
     }
 
     @Test
-    public void kontrollerHeleTabellenAlle() throws Exception {
+    public void kontrollerHeleTabellenAlle() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 HeleTabellen heleTabellen = Trekkrutine
@@ -112,7 +112,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerAtMaxEttTrekkgrunnlagMed0ITrekkVedHeleTabellen() throws Exception {
+    public void kontrollerAtMaxEttTrekkgrunnlagMed0ITrekkVedHeleTabellen() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnummer, periode);
@@ -123,7 +123,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerEndredeOverskytendeProsenter() throws Exception {
+    public void kontrollerEndredeOverskytendeProsenter() {
         HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED);
         assertEquals(heleTabellen.overskytendeProsent, 54);
         heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7300, Periode.PERIODE_1_MAANED);
@@ -133,7 +133,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerAvrlundingVedOverskytedeTrekk() throws Exception {
+    public void kontrollerAvrlundingVedOverskytedeTrekk() {
         long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109700);
         long beregnetTrekk2 = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109799);
         assertEquals(beregnetTrekk, beregnetTrekk2);
