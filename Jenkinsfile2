@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 def scriptVersion = 'v7'
-def sonarQubeUrl = 'http://sonarqube-sofus-build.utv.paas.skead.no'
+def sonarQubeUrl = 'https://sonar.aurora.skead.no/'
 
 def overrides = [
   iqOrganizationName: 'Team Forskudd',
