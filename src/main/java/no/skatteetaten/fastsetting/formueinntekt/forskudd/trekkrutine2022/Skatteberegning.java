@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2021;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2022;
 
 public class Skatteberegning {
 

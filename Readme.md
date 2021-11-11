@@ -1,6 +1,6 @@
 # Trekkrutine for beregning av forskuddstrekk
 
-Disse java-klassene beregner tabelltrekk for inntektsåret 2021.
+Disse java-klassene beregner tabelltrekk for inntektsåret 2022.
 
 Det er metoden `beregnTabelltrekk` i klassen `Trekkrutine` som skal kalles når tabelltrekket skal beregnes.
 
@@ -8,9 +8,9 @@ Det er metoden `beregnTabelltrekk` i klassen `Trekkrutine` som skal kalles når 
 
 
 ## Årlige endringer
-Endringene i skattesatsene for 2021 er lagt inn i klassen `Konstanter`.
+Endringene i skattesatsene for 2022 er lagt inn i klassen `Konstanter`.
 
 I de andre klassene er det ingen endringer, bortsett fra at pakkenavnet er endret.
 
-ArtifactId i pom-filen er også endret fra 2020 til 2021.
+ArtifactId i pom-filen er også endret fra 2021 til 2022.
 
