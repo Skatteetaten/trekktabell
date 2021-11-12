@@ -12,7 +12,6 @@ import static org.junit.Assert.fail;
 public class TrekkrutineLikhetsTest {
 
     @Test
-    @Ignore
     public void likhetstest_mot_annen_kilde() throws Exception {
         URL filSti = getClass().getResource("/trekktabellerFraAnnenKilde.txt");
 
