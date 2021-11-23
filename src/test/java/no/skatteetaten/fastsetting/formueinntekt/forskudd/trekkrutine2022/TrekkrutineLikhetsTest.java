@@ -1,5 +1,6 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2021;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2022;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
