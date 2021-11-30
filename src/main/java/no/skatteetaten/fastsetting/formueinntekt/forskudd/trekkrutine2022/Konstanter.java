@@ -5,14 +5,15 @@ public class Konstanter {
     static final long
 
             KLASSE1_VANLIG = 58250L,
-            KLASSE1_FINNMARK = 76350L, // Personfradrag + finnmarksfradrag
+            KLASSE1_FINNMARK = 78250L, // Personfradrag + finnmarksfradrag
             TRINN1 = 190350L,
             TRINN2 = 267900L,
-            TRINN3 = 651250L,
-            TRINN4 = 1052200L,
+            TRINN3 = 643800L,
+            TRINN4 = 969200L,
+            TRINN5 = 2000000L,
             LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
             HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
-            AVG_FRI_TRYGDEAVGIFT = 59650L,
+            AVG_FRI_TRYGDEAVGIFT = 64650L,
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 3520L,
             MAX_ANV_MINSTE_FRADRAG = 96756L, // Lønn
@@ -26,15 +27,16 @@ public class Konstanter {
     static final double
             PROSENT_TRINN1 = 1.7d,
             PROSENT_TRINN2 = 4.0d,
-            PROSENT_TRINN3 = 13.3d,
-            PROSENT_TRINN3_FINNMARK = 11.3d,
-            PROSENT_TRINN4 = 16.3d,
+            PROSENT_TRINN3 = 13.4d,
+            PROSENT_TRINN3_FINNMARK = 11.4d,
+            PROSENT_TRINN4 = 16.4d,
+            PROSENT_TRINN5 = 17.4d,
             FELLES_SKATT_VANLIG = 8.65d,
             FELLES_SKATT_FINNMARK = 5.15d,
             SKATTORE = 13.35d,
             TRYGDE_PROSENT = 25d,
             LAV_TRYGDEAVG_PROSENT = 5.1d,
-            HOY_TRYGDEAVG_PROSENT = 8.1d,
+            HOY_TRYGDEAVG_PROSENT = 8.0d,
             ANV_MINSTE_FRAD_PROSENT = 40.48d,
             ANV_MINSTE_FRAD_PROSENT_PENSJ = 35.2d,
             MINSTE_FRAD_PROSENT = 46.0d,

@@ -39,7 +39,11 @@ public class Skatteberegning {
         if (personInntektAar < Konstanter.TRINN4) {
             return beregnTrinnskattHvisInntektUnderTrinn4(personInntektAar, prosentTrinn3);
         }
-        return beregnTrinnskattHvisInntektOverTrinn4(personInntektAar, prosentTrinn3);
+
+        if (personInntektAar < Konstanter.TRINN5) {
+            return beregnTrinnskattHvisInntektUnderTrinn5(personInntektAar, prosentTrinn3);
+        }
+        return beregnTrinnskattHvisInntektOverTrinn5(personInntektAar, prosentTrinn3);
     }
 
     private static long beregnTrinnskattHvisInntektUnderTrinn2(double personInntektAar) {
@@ -57,11 +61,19 @@ public class Skatteberegning {
                 + ((personInntektAar - Konstanter.TRINN3) * prosentTrinn3 / 100));
     }
 
-    private static long beregnTrinnskattHvisInntektOverTrinn4(double personInntektAar, double prosentTrinn3) {
+    private static long beregnTrinnskattHvisInntektUnderTrinn5(double personInntektAar, double prosentTrinn3) {
+        return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
+            + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
+            + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
+            + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100));
+    }
+
+    private static long beregnTrinnskattHvisInntektOverTrinn5(double personInntektAar, double prosentTrinn3) {
         return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                 + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
                 + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
-                + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100));
+                + ((Konstanter.TRINN5 - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100)
+                + ((personInntektAar - Konstanter.TRINN5) * Konstanter.PROSENT_TRINN5 / 100));
     }
 
     static long beregnTrygdeavgift(Tabellnummer tabellnummer, double personInntektAar) {
