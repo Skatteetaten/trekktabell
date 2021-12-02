@@ -27,7 +27,6 @@ public class Trekkrutine {
     }
 
     public static HeleTabellen beregnHeleTabellen(Tabellnummer tabellnummer, Periode periode) {
-
         LinkedHashMap<Long, Long> alleTrekk = new LinkedHashMap<>();
 
         for (long grunnlag = 0; grunnlag <= periode.maxTrekkgrunnlag; grunnlag += periode.avrunding) {
@@ -67,7 +66,6 @@ public class Trekkrutine {
                 + Skatteberegning.beregnFelleseskatt(tabellnummer, alminneligInntektAar)
                 + Skatteberegning.beregnTrinnskatt(tabellnummer, personInntektAar)
                 + Skatteberegning.beregnTrygdeavgift(tabellnummer, personInntektAar);
-
     }
 
     private static long beregnTrekk(Tabellnummer tabellnummer, Periode periode, double sumSkatt) {
