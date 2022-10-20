@@ -1,5 +1,6 @@
 package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2023;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import static org.junit.Assert.fail;
 
 public class TrekkrutineLikhetsTest {
 
+    @Ignore
     @Test
     public void likhetstest_mot_annen_kilde() throws Exception {
         URL filSti = getClass().getResource("/trekktabellerFraAnnenKilde.txt");
