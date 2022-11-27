@@ -10,8 +10,6 @@ Det er metoden `beregnTabelltrekk` i klassen `Trekkrutine` som skal kalles når 
 ## Årlige endringer
 Endringene i skattesatsene for 2023 er lagt inn i klassen `Konstanter`.
 
-På grunn av det nye trinnet i trinnskatten, er det i år også en endring i klassen `Skatteberegning`
-
 I de andre klassene er det ingen endringer, bortsett fra at pakkenavnet er endret.
 
 ArtifactId i pom-filen er også endret fra 2022 til 2023.
