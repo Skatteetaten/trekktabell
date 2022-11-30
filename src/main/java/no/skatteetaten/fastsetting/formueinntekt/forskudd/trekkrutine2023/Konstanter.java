@@ -3,22 +3,22 @@ package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2023;
 public class Konstanter {
 
     static final long
-            KLASSE1_VANLIG = 73100L,
-            KLASSE1_FINNMARK = 93650L, // Personfradrag + finnmarksfradrag
+            KLASSE1_VANLIG = 79600L,
+            KLASSE1_FINNMARK = 100150L, // Personfradrag + finnmarksfradrag
             TRINN1 = 198350L,
             TRINN2 = 279150L,
-            TRINN3 = 644700L,
-            TRINN4 = 969200L,
-            TRINN5 = 2000000L,
+            TRINN3 = 642950L,
+            TRINN4 = 926800L,
+            TRINN5 = 1500000L,
             LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
             HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
-            AVG_FRI_TRYGDEAVGIFT = 64650L,
+            AVG_FRI_TRYGDEAVGIFT = 69650L,
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 0L,
-            MAX_ANV_MINSTE_FRADRAG = 96756L, // Lønn
-            MAX_ANV_MINSTE_FRADRAG_PENSJ = 79904L,
+            MAX_ANV_MINSTE_FRADRAG = 91916L, // Lønn
+            MAX_ANV_MINSTE_FRADRAG_PENSJ = 75900L,
             MIN_MINSTE_FRADRAG = 0L,
-            MAX_MINSTE_FRADRAG = 109950L,
+            MAX_MINSTE_FRADRAG = 104450L,
             LONNSFRADRAG = 0L,
             ANV_LONNSFRADRAG = 0L,
             MAX_SJO_FRADRAG = 83000L;
