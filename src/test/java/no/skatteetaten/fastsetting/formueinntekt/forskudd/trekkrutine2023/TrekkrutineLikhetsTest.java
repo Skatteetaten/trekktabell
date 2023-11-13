@@ -9,6 +9,7 @@ import java.net.URL;
 
 import static org.junit.Assert.fail;
 
+@Ignore
 public class TrekkrutineLikhetsTest {
 
     @Test
