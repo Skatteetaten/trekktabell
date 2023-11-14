@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2023;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

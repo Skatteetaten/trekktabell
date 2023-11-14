@@ -1,6 +1,6 @@
 # Trekkrutine for beregning av forskuddstrekk
 
-Disse java-klassene beregner tabelltrekk for inntektsåret 2023.
+Disse java-klassene beregner tabelltrekk for inntektsåret 2024.
 
 Det er metoden `beregnTabelltrekk` i klassen `Trekkrutine` som skal kalles når tabelltrekket skal beregnes.
 
@@ -8,9 +8,9 @@ Det er metoden `beregnTabelltrekk` i klassen `Trekkrutine` som skal kalles når 
 
 
 ## Årlige endringer
-Endringene i skattesatsene for 2023 er lagt inn i klassen `Konstanter`.
+Endringene i skattesatsene for 2024 er lagt inn i klassen `Konstanter`.
 
 I de andre klassene er det ingen endringer, bortsett fra at pakkenavnet er endret.
 
-ArtifactId i pom-filen er også endret fra 2022 til 2023.
+ArtifactId i pom-filen er også endret fra 2023 til 2024.
 
