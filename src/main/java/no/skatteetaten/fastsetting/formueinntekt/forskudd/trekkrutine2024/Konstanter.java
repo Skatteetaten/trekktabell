@@ -9,7 +9,7 @@ public class Konstanter {
             TRINN2 = 292850L,
             TRINN3 = 670000L,
             TRINN4 = 937900L,
-            TRINN5 = 1573500L,
+            TRINN5 = 1350000L,
             LAV_GRENSE_TRYGDEAVGIFT = beregnLavGrenseTrygdeavgift(),
             HOY_GRENSE_TRYGDEAVGIFT = beregnHoyGrenseTrygdeavgift(),
             AVG_FRI_TRYGDEAVGIFT = 69650L,
