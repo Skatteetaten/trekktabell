@@ -6,7 +6,7 @@ def sonarQubeUrl = 'https://sonar.aurora.skead.no/'
 def overrides = [
   iqOrganizationName: 'Team Forskudd',
   iqCredentialsId: 'forskudd-iq',
-  javaVersion: 17,
+  javaVersion: 21,
   failOnCheckstyleViolation: false,
   piTests: false,
   openShiftBuild: false,
