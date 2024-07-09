@@ -139,6 +139,45 @@ public class TrekkrutineTest {
         assertEquals(beregnetTrekk, beregnetTrekk2);
     }
 
+    @Test
+    public void merFradragGirSnillereTrekkTest() {
+        Tabellnummer forrigeTabellnummer = null;
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            if (tabellnummer.name().startsWith("TABELL_8")) {
+                if (forrigeTabellnummer != null) {
+                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    assertTrue(trekk1 > trekk2);
+                }
+                forrigeTabellnummer = tabellnummer;
+            }
+        }
+    }
+
+    @Test
+    public void merTilleggGirMerTrekkTest() {
+        Tabellnummer forrigeTabellnummer = null;
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            if (tabellnummer.name().startsWith("TABELL_9")) {
+                if (forrigeTabellnummer != null) {
+                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    assertTrue(trekk1 < trekk2);
+                }
+                forrigeTabellnummer = tabellnummer;
+            }
+        }
+    }
+
+    @Test
+    public void likhetstestMotGamleTabeller() {
+        for (long trekkgrunnlag=1000; trekkgrunnlag < 1000000; trekkgrunnlag += 1000) {
+            assertEquals(Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, trekkgrunnlag),
+                    Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8000, Periode.PERIODE_1_MAANED, trekkgrunnlag));
+            assertEquals(Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7119, Periode.PERIODE_1_MAANED, trekkgrunnlag),
+                    Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8190, Periode.PERIODE_1_MAANED, trekkgrunnlag));
+        }
+    }
 
     @Test
     @Ignore
