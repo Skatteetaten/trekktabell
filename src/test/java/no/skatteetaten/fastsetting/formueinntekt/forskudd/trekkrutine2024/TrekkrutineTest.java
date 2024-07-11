@@ -8,17 +8,13 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
 public class TrekkrutineTest {
 
     @Test
     public void skal_returnere_0_ved_trekkgrunnlag_lik_0() {
-        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 0L);
+        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8000, Periode.PERIODE_1_MAANED, 0L);
         assertEquals(0L, beregnetTrekk);
     }
 
@@ -85,7 +81,18 @@ public class TrekkrutineTest {
     public void merFradragGirSnillereTrekkTest() {
         Tabellnummer forrigeTabellnummer = null;
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            if (tabellnummer.name().startsWith("TABELL_8")) {
+            if (tabellnummer.name().startsWith("TABELL_8") && tabellnummer.tabelltype.equals(Tabelltype.VANLIG)) {
+                if (forrigeTabellnummer != null) {
+                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    assertTrue(trekk1 > trekk2);
+                }
+                forrigeTabellnummer = tabellnummer;
+            }
+        }
+        forrigeTabellnummer = null;
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            if (tabellnummer.name().startsWith("TABELL_8") && tabellnummer.tabelltype.equals(Tabelltype.PENSJONIST)) {
                 if (forrigeTabellnummer != null) {
                     long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
                     long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
@@ -100,7 +107,7 @@ public class TrekkrutineTest {
     public void merTilleggGirMerTrekkTest() {
         Tabellnummer forrigeTabellnummer = null;
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            if (tabellnummer.name().startsWith("TABELL_9")) {
+            if (tabellnummer.name().startsWith("TABELL_9") && tabellnummer.tabelltype.equals(Tabelltype.VANLIG)) {
                 if (forrigeTabellnummer != null) {
                     long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
                     long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
@@ -109,24 +116,16 @@ public class TrekkrutineTest {
                 forrigeTabellnummer = tabellnummer;
             }
         }
-    }
-
-    @Test
-    public void likhetstestMotGamleTabeller() {
-        for (long trekkgrunnlag=1000; trekkgrunnlag < 100000; trekkgrunnlag += 1000) {
-            assertEquals(Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, trekkgrunnlag),
-                    Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8000, Periode.PERIODE_1_MAANED, trekkgrunnlag));
-            assertEquals(Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7119, Periode.PERIODE_1_MAANED, trekkgrunnlag),
-                    Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8190, Periode.PERIODE_1_MAANED, trekkgrunnlag));
-        }
-    }
-
-    @Test
-    public void utenOverskytendeProsentTest() {
-        for (long trekkgrunnlag=9500; trekkgrunnlag < 99500; trekkgrunnlag += 1000) {
-            long trekkGml = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, trekkgrunnlag);
-            long trekkNy  = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8000, Periode.PERIODE_1_MAANED, trekkgrunnlag);
-            assertEquals(trekkGml, trekkNy);
+        forrigeTabellnummer = null;
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            if (tabellnummer.name().startsWith("TABELL_9") && tabellnummer.tabelltype.equals(Tabelltype.PENSJONIST)) {
+                if (forrigeTabellnummer != null) {
+                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    assertTrue(trekk1 < trekk2);
+                }
+                forrigeTabellnummer = tabellnummer;
+            }
         }
     }
 
