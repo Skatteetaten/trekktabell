@@ -107,16 +107,4 @@ public class Skatteberegning {
         }
     }
 
-    //TODO: fjern denne
-    static long beregnOverskytendeTrekk(Tabellnummer tabellnummer, Periode periode, double avrundetTrekkgrunnlag) {
-        if (periode.maxTrekkgrunnlag > avrundetTrekkgrunnlag) {
-            return 0;
-        }
-
-        double overskytendeTrekk =
-                (avrundetTrekkgrunnlag - periode.maxTrekkgrunnlag) * tabellnummer.overskytendeProsent / 100d;
-
-        return Math.round(overskytendeTrekk);
-    }
-
 }

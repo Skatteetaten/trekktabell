@@ -46,49 +46,6 @@ public class TrekkrutineTest {
         }
     }
 
-    @Ignore
-    @Test
-    public void overskytende_trekk_skal_vaere_storre_enn_0() throws Exception {
-        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            for (Periode periode : Periode.values()) {
-                for (double trekkgrunnlag = 1000L; trekkgrunnlag < 100000L; trekkgrunnlag += 166) {
-                    if (trekkgrunnlag > periode.maxTrekkgrunnlag) {
-                        long overskytendetTrekk = Skatteberegning
-                            .beregnOverskytendeTrekk(tabellnummer, periode, trekkgrunnlag);
-                        assertTrue(overskytendetTrekk > 0L);
-                    }
-                }
-            }
-        }
-    }
-
-    @Ignore
-    @Test
-    // Samme som over, men med streams
-    public void overskytende_trekk_skal_vaere_storre_enn_0_med_java8() throws Exception {
-        List<Tabellnummer> tabListe = Arrays.asList(Tabellnummer.values());
-        List<Periode> periodeListe = Arrays.asList(Periode.values());
-        List<Double> grunnlag = DoubleStream.iterate(1000, n -> n + 166)
-            .limit(1000)
-            .boxed()
-            .collect(Collectors.toList());
-
-        tabListe.stream()
-            .forEach(t -> {
-                periodeListe.stream()
-                    .forEach(p -> {
-                        grunnlag.stream()
-                            .forEach(g -> {
-                                if (g > p.maxTrekkgrunnlag) {
-                                    long overskytendeTrekk = Skatteberegning
-                                        .beregnOverskytendeTrekk(t, p, g);
-                                    assertTrue(overskytendeTrekk > 0L);
-                                }
-                            });
-                    });
-            });
-    }
-
     @Test
     public void kontrollerBeregningAvLavGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftLavSats = Konstanter.beregnLavGrenseTrygdeavgift();
@@ -122,24 +79,6 @@ public class TrekkrutineTest {
                 assertTrue(antallMed0 < 2);
             }
         }
-    }
-
-    @Ignore
-    @Test
-    public void kontrollerEndredeOverskytendeProsenter() throws Exception {
-        HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED);
-        assertEquals(heleTabellen.overskytendeProsent, 54);
-        heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7300, Periode.PERIODE_1_MAANED);
-        assertEquals(heleTabellen.overskytendeProsent, 54);
-        heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_6300, Periode.PERIODE_1_MAANED);
-        assertEquals(heleTabellen.overskytendeProsent, 50);
-    }
-
-    @Test
-    public void kontrollerAvrlundingVedOverskytedeTrekk() throws Exception {
-        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109700);
-        long beregnetTrekk2 = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109799);
-        assertEquals(beregnetTrekk, beregnetTrekk2);
     }
 
     @Test
@@ -194,8 +133,10 @@ public class TrekkrutineTest {
     @Test
     public void finnNyOverskytendeProsentTest() {
     //TODO Hvordan lage en god test på denne ?
-        double v = Trekkrutine.finnOverskytendeProsentForTabell(Tabellnummer.TABELL_6300);
-        System.out.println(v);
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            double overskytendeProsentForTabell = Trekkrutine.finnOverskytendeProsentForTabell(tabellnummer);
+            System.out.println("Tabell " + tabellnummer.name() + " - overskytende prosent = " + overskytendeProsentForTabell);
+        }
     }
 
     @Test

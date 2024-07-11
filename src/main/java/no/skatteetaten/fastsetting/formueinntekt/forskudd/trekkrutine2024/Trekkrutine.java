@@ -7,23 +7,15 @@ public class Trekkrutine {
     public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
         long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(periode, trekkgrunnlag);
 
-        long overskytendeTrekk = 0;
-        if (tabellnummer.overskytendeProsent > 0) { //TODO: fjern for alle tabeller
-            overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
-        }
-
-        if (overskytendeTrekk > 0)
-            avrundetTrekkgrunnlag = periode.maxTrekkgrunnlag;
-
         long personInntektAar = Math.round(avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer));
 
         double alminneligInntektAar = finnAlminneligInntektAar(tabellnummer, personInntektAar);
 
         long sumSkatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
 
-        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt) + overskytendeTrekk;
+        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt);
 
-        if (trekk > trekkgrunnlag && overskytendeTrekk == 0)
+        if (trekk > trekkgrunnlag)
             trekk = trekkgrunnlag;
 
         return trekk;
@@ -44,7 +36,8 @@ public class Trekkrutine {
             }
         }
 
-        return new HeleTabellen(alleTrekk, tabellnummer.overskytendeProsent);
+        //TODO: Ta bort overskytende prosent herfra også ... antar jeg ?
+        return new HeleTabellen(alleTrekk, finnOverskytendeProsentForTabell(tabellnummer));
     }
 
     public static double finnOverskytendeProsentForTabell(Tabellnummer tabellnummer) {

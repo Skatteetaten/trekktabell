@@ -47,7 +47,7 @@ public class Konstanter {
     det skal benyttes finnmark-satser eller ikke.
      */
 
-    //TODO: Fjern disee
+    //TODO: Fjern disse
     static final double
             OVERSKYTENDE_PROSENT_VANLIG = 54,
             OVERSKYTENDE_PROSENT_PENSJONIST = 48,
@@ -65,8 +65,7 @@ public class Konstanter {
             OVERSKYTENDE_PROSENT_6700 = 41,
             OVERSKYTENDE_PROSENT_7150 = 47,
             OVERSKYTENDE_PROSENT_7160 = 39,
-            OVERSKYTENDE_PROSENT_7170 = 45,
-            OVERSKYTENDE_PROSENT_INGEN = 0;
+            OVERSKYTENDE_PROSENT_7170 = 45;
 
     static long beregnLavGrenseTrygdeavgift() {
         return Math.round((AVG_FRI_TRYGDEAVGIFT * TRYGDE_PROSENT)/(TRYGDE_PROSENT - LAV_TRYGDEAVG_PROSENT));
