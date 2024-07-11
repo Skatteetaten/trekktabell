@@ -42,31 +42,6 @@ public class Konstanter {
             STFRADRAG_PROSENT = 10d,
             SJO_PROSENT = 30d;
 
-    /*
-    Det som avgjør den overskytende prosenten, er hva som som betales i trygdeavgift, antall trekkmåneder og om
-    det skal benyttes finnmark-satser eller ikke.
-     */
-
-    //TODO: Fjern disse
-    static final double
-            OVERSKYTENDE_PROSENT_VANLIG = 54,
-            OVERSKYTENDE_PROSENT_PENSJONIST = 48,
-            OVERSKYTENDE_PROSENT_7300 = 54,
-            OVERSKYTENDE_PROSENT_7350 = 47,
-            OVERSKYTENDE_PROSENT_7500 = 39,
-            OVERSKYTENDE_PROSENT_7550 = 45,
-            OVERSKYTENDE_PROSENT_7700 = 44,
-            OVERSKYTENDE_PROSENT_0100 = 39,
-            OVERSKYTENDE_PROSENT_0101 = 47,
-            OVERSKYTENDE_PROSENT_6300 = 50,
-            OVERSKYTENDE_PROSENT_6350 = 43,
-            OVERSKYTENDE_PROSENT_6500 = 36,
-            OVERSKYTENDE_PROSENT_6550 = 41,
-            OVERSKYTENDE_PROSENT_6700 = 41,
-            OVERSKYTENDE_PROSENT_7150 = 47,
-            OVERSKYTENDE_PROSENT_7160 = 39,
-            OVERSKYTENDE_PROSENT_7170 = 45;
-
     static long beregnLavGrenseTrygdeavgift() {
         return Math.round((AVG_FRI_TRYGDEAVGIFT * TRYGDE_PROSENT)/(TRYGDE_PROSENT - LAV_TRYGDEAVG_PROSENT));
     }
