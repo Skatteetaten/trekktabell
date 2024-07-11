@@ -107,6 +107,7 @@ public class Skatteberegning {
         }
     }
 
+    //TODO: fjern denne
     static long beregnOverskytendeTrekk(Tabellnummer tabellnummer, Periode periode, double avrundetTrekkgrunnlag) {
         if (periode.maxTrekkgrunnlag > avrundetTrekkgrunnlag) {
             return 0;

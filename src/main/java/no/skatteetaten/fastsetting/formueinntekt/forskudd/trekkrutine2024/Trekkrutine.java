@@ -7,7 +7,10 @@ public class Trekkrutine {
     public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
         long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(periode, trekkgrunnlag);
 
-        long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
+        long overskytendeTrekk = 0;
+        if (tabellnummer.overskytendeProsent > 0) { //TODO: fjern for alle tabeller
+            overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
+        }
 
         if (overskytendeTrekk > 0)
             avrundetTrekkgrunnlag = periode.maxTrekkgrunnlag;
@@ -42,6 +45,13 @@ public class Trekkrutine {
         }
 
         return new HeleTabellen(alleTrekk, tabellnummer.overskytendeProsent);
+    }
+
+    public static double finnOverskytendeProsentForTabell(Tabellnummer tabellnummer) {
+        long trekkLav = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 120000);
+        long trekkHoy = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 220000);
+
+        return ((double)trekkHoy - (double)trekkLav) / 1000;
     }
 
     private static long finnAvrundetTrekkgrunnlag(Periode periode, long trekkgrunnlag) {
