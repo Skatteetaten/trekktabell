@@ -61,7 +61,7 @@ public class TrekkrutineTest {
                 HeleTabellen heleTabellen = Trekkrutine
                     .beregnHeleTabellen(tabellnummer, periode);
                 assertTrue(heleTabellen.alleTrekk.size() > 100);
-//                assertTrue(heleTabellen.overskytendeProsent > 30); //TODO: Fjern denne linjen
+                assertTrue(heleTabellen.overskytendeProsent > 30);
             }
         }
     }
@@ -131,9 +131,9 @@ public class TrekkrutineTest {
 
     @Test
     public void finnNyOverskytendeProsentTest() {
-    //TODO Hvordan lage en god test på denne ?
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             double overskytendeProsentForTabell = Trekkrutine.finnOverskytendeProsentForTabell(tabellnummer);
+            assertTrue(overskytendeProsentForTabell > 35);
             System.out.println("Tabell " + tabellnummer.name() + " - overskytende prosent = " + overskytendeProsentForTabell);
         }
     }

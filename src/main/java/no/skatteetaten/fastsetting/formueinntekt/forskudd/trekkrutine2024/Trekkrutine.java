@@ -36,15 +36,15 @@ public class Trekkrutine {
             }
         }
 
-        //TODO: Ta bort overskytende prosent herfra også ... antar jeg ?
+        //TODO: Trenger vi overskytende prosent her ?
         return new HeleTabellen(alleTrekk, finnOverskytendeProsentForTabell(tabellnummer));
     }
 
     public static double finnOverskytendeProsentForTabell(Tabellnummer tabellnummer) {
-        long trekkLav = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 120000);
-        long trekkHoy = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 220000);
+        long trekkLav = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 320000);
+        long trekkHoy = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 1320000);
 
-        return ((double)trekkHoy - (double)trekkLav) / 1000;
+        return ((double)trekkHoy - (double)trekkLav) / 10000;
     }
 
     private static long finnAvrundetTrekkgrunnlag(Periode periode, long trekkgrunnlag) {
