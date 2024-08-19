@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 
 public class TrekkrutineTest {
@@ -61,7 +62,7 @@ public class TrekkrutineTest {
                 HeleTabellen heleTabellen = Trekkrutine
                     .beregnHeleTabellen(tabellnummer, periode);
                 assertTrue(heleTabellen.alleTrekk.size() > 100);
-                assertTrue(heleTabellen.overskytendeProsent > 30);
+                assertTrue(heleTabellen.overskytendeProsent.doubleValue() > 30);
             }
         }
     }
@@ -132,8 +133,8 @@ public class TrekkrutineTest {
     @Test
     public void finnNyOverskytendeProsentTest() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            double overskytendeProsentForTabell = Trekkrutine.finnOverskytendeProsentForTabell(tabellnummer);
-            assertTrue(overskytendeProsentForTabell > 35);
+            BigDecimal overskytendeProsentForTabell = Trekkrutine.finnOverskytendeProsentForTabell(tabellnummer);
+            assertTrue(overskytendeProsentForTabell.doubleValue() > 35);
             System.out.println("Tabell " + tabellnummer.name() + " - overskytende prosent = " + overskytendeProsentForTabell);
         }
     }

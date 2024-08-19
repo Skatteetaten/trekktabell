@@ -1,5 +1,7 @@
 package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedHashMap;
 
 public class Trekkrutine {
@@ -35,16 +37,13 @@ public class Trekkrutine {
                 alleTrekk.put(grunnlag, trekk);
             }
         }
-
-        //TODO: Trenger vi overskytende prosent her ?
         return new HeleTabellen(alleTrekk, finnOverskytendeProsentForTabell(tabellnummer));
     }
 
-    public static double finnOverskytendeProsentForTabell(Tabellnummer tabellnummer) {
-        long trekkLav = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 320000);
-        long trekkHoy = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 1320000);
-
-        return ((double)trekkHoy - (double)trekkLav) / 10000;
+    public static BigDecimal finnOverskytendeProsentForTabell(Tabellnummer tabellnummer) {
+        long trekkLav = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED,  300000);
+        long trekkHoy = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 1300000);
+        return  BigDecimal.valueOf(((double)trekkHoy - (double)trekkLav) / 10000).setScale(3, RoundingMode.HALF_UP);
     }
 
     private static long finnAvrundetTrekkgrunnlag(Periode periode, long trekkgrunnlag) {
