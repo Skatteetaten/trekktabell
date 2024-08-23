@@ -29,7 +29,7 @@ Selv om det neppe er behov for denne utvidelsen for trekktabellene for pensjon, 
 <h3>Fjerne bruk av overskytende prosent</h3>
 Trekkrutina har beregnet forskuddstrekket etter vanlige skatteregler opp til en viss grense. Etter denne grensen benyttet man en angitt prosent. For månedstabeller var denne grensen 99800.<br>
 Dette ga unøyaktig trekk over denne grensen. Vi fjerner nå bruken av overskytende prosent, og lar trekkrutinen beregne trekket på vanlig måte også over denne grensen.<br>
-For de som likevel av en eller annen grunn ønsker en overskytende prosent så har vi laget en metode som beregner en omtrentlig overskytende prosent for en tabell: `finnOverskytendeProsentForTabell`.<br>
+For de som likevel av en eller annen grunn ønsker en overskytende prosent så har vi laget en metode som beregner en omtrentlig overskytende prosent for en tabell: `finnOverskytendeProsentForTabell`. <br>
 Denne bør uansett ikke benyttes på beløp som tilsvarer en årsinntekt lavere enn det høyeste trinnet på trinnskatten, for 2024 1 350 000. 
 
 ## Årlige endringer (dette gjelder endringene som ble gjort da 2024-versjonen ble laget)
