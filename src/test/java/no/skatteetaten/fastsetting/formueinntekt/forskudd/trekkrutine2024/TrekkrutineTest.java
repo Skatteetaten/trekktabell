@@ -214,8 +214,8 @@ public class TrekkrutineTest {
                         for (Long grl : alleTrekk.keySet()) {
                             Long trekk = alleTrekk.get(grl);
                             fw.write(
-                                tabellnr.name().substring(7, 11) + per + tabType + String.format("%05d", grl) + String
-                                    .format("%05d", trekk) + "\r\n");
+                                tabellnr.name().substring(7, 11) + per + tabType + String.format("%06d", grl) + String
+                                    .format("%06d", trekk) + "\r\n");
                             teller++;
                         }
                     }
