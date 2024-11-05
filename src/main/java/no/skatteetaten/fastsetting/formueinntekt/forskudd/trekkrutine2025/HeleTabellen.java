@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
