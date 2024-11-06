@@ -91,17 +91,6 @@ public class TrekkrutineTest {
                 forrigeTabellnummer = tabellnummer;
             }
         }
-        forrigeTabellnummer = null;
-        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            if (tabellnummer.name().startsWith("TABELL_8") && tabellnummer.tabelltype.equals(Tabelltype.PENSJONIST)) {
-                if (forrigeTabellnummer != null) {
-                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
-                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
-                    assertTrue(trekk1 > trekk2);
-                }
-                forrigeTabellnummer = tabellnummer;
-            }
-        }
     }
 
     @Test
@@ -109,17 +98,6 @@ public class TrekkrutineTest {
         Tabellnummer forrigeTabellnummer = null;
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             if (tabellnummer.name().startsWith("TABELL_9") && tabellnummer.tabelltype.equals(Tabelltype.VANLIG)) {
-                if (forrigeTabellnummer != null) {
-                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
-                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
-                    assertTrue(trekk1 < trekk2);
-                }
-                forrigeTabellnummer = tabellnummer;
-            }
-        }
-        forrigeTabellnummer = null;
-        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            if (tabellnummer.name().startsWith("TABELL_9") && tabellnummer.tabelltype.equals(Tabelltype.PENSJONIST)) {
                 if (forrigeTabellnummer != null) {
                     long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
                     long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
@@ -249,9 +227,7 @@ public class TrekkrutineTest {
     }
 
     private char finnTabelltype(Tabelltype tabelltype) {
-        if (tabelltype == Tabelltype.PENSJONIST) {
-            return '1';
-        }
+        //siden pensjonisttabellene ikke lenger eksisterer returneres alltid 0 her
         return '0';
     }
 
@@ -265,9 +241,6 @@ public class TrekkrutineTest {
         return true;
     }
     private boolean aktuellPeriode(Tabellnummer tabellnummer, Periode periode) {
-        if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) {
-            return periode == Periode.PERIODE_1_MAANED;
-        }
         if (tabellnummer.tabelltype == Tabelltype.SJØ) {
             return periode == Periode.PERIODE_1_MAANED || periode == Periode.PERIODE_14_DAGER ||
                 periode == Periode.PERIODE_1_UKE;

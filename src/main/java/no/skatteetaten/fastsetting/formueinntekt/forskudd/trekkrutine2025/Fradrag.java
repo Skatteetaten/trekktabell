@@ -3,9 +3,6 @@ package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
 public class Fradrag {
 
     static long beregnMinsteFradrag(Tabellnummer tabellnummer, long personInntektAar) {
-        if (tabellnummer.tabelltype == Tabelltype.PENSJONIST)
-            return beregnMinstefradragPensjon(personInntektAar);
-
         if (tabellnummer.tabelltype == Tabelltype.SJØ)
             return beregnMinstefradragSjo(personInntektAar);
 
