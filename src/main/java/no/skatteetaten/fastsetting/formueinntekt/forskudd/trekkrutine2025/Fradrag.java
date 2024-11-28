@@ -28,21 +28,6 @@ public class Fradrag {
         return minstefradrag;
     }
 
-    private static long beregnMinstefradragPensjon(long personInntektAar) {
-        long minstefradrag = Math.round((personInntektAar * Konstanter.ANV_MINSTE_FRAD_PROSENT_PENSJ) / 100);
-
-        if (minstefradrag > Konstanter.MAX_ANV_MINSTE_FRADRAG_PENSJ) {
-            minstefradrag = Konstanter.MAX_ANV_MINSTE_FRADRAG_PENSJ;
-        }
-        if (minstefradrag < Konstanter.MIN_ANV_MINSTE_FRADRAG) {
-            minstefradrag = Konstanter.MIN_ANV_MINSTE_FRADRAG;
-        }
-        if (minstefradrag > personInntektAar) {
-            minstefradrag = personInntektAar;
-        }
-        return minstefradrag;
-    }
-
     private static long beregnMinstefradragSjo(long personInntektAar) {
         long minstefradrag = Math.round((personInntektAar * Konstanter.MINSTE_FRAD_PROSENT) / 100);
 

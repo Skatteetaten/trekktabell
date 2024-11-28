@@ -16,7 +16,6 @@ public class Konstanter {
             MAX_STFRADRAG = 40000L,
             MIN_ANV_MINSTE_FRADRAG = 0L,
             MAX_ANV_MINSTE_FRADRAG = 80960L, // Lønn
-            MAX_ANV_MINSTE_FRADRAG_PENSJ = 64372L,
             MIN_MINSTE_FRADRAG = 0L,
             MAX_MINSTE_FRADRAG = 92000L,
             LONNSFRADRAG = 0L,
@@ -37,7 +36,6 @@ public class Konstanter {
             LAV_TRYGDEAVG_PROSENT = 5.1d,
             HOY_TRYGDEAVG_PROSENT = 7.7d,
             ANV_MINSTE_FRAD_PROSENT = 40.48d,
-            ANV_MINSTE_FRAD_PROSENT_PENSJ = 35.2d,
             MINSTE_FRAD_PROSENT = 46.0d,
             STFRADRAG_PROSENT = 10d,
             SJO_PROSENT = 30d;
