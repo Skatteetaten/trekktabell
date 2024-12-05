@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
 
 public class Skatteberegning {
 
@@ -105,17 +105,6 @@ public class Skatteberegning {
         } else {
             return Math.round((personInntektAar - Konstanter.AVG_FRI_TRYGDEAVGIFT) * Konstanter.TRYGDE_PROSENT / 100);
         }
-    }
-
-    static long beregnOverskytendeTrekk(Tabellnummer tabellnummer, Periode periode, double avrundetTrekkgrunnlag) {
-        if (periode.maxTrekkgrunnlag > avrundetTrekkgrunnlag) {
-            return 0;
-        }
-
-        double overskytendeTrekk =
-                (avrundetTrekkgrunnlag - periode.maxTrekkgrunnlag) * tabellnummer.overskytendeProsent / 100d;
-
-        return Math.round(overskytendeTrekk);
     }
 
 }

@@ -1,5 +1,7 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedHashMap;
 
 public class Trekkrutine {
@@ -7,20 +9,15 @@ public class Trekkrutine {
     public static long beregnTabelltrekk(Tabellnummer tabellnummer, Periode periode, long trekkgrunnlag) {
         long avrundetTrekkgrunnlag = finnAvrundetTrekkgrunnlag(periode, trekkgrunnlag);
 
-        long overskytendeTrekk = Skatteberegning.beregnOverskytendeTrekk(tabellnummer, periode, avrundetTrekkgrunnlag);
-
-        if (overskytendeTrekk > 0)
-            avrundetTrekkgrunnlag = periode.maxTrekkgrunnlag;
-
         long personInntektAar = Math.round(avrundetTrekkgrunnlag * periode.getInntektsPeriode(tabellnummer));
 
         double alminneligInntektAar = finnAlminneligInntektAar(tabellnummer, personInntektAar);
 
         long sumSkatt = beregnSkatt(tabellnummer, personInntektAar, alminneligInntektAar);
 
-        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt) + overskytendeTrekk;
+        long trekk = beregnTrekk(tabellnummer, periode, sumSkatt);
 
-        if (trekk > trekkgrunnlag && overskytendeTrekk == 0)
+        if (trekk > trekkgrunnlag)
             trekk = trekkgrunnlag;
 
         return trekk;
@@ -40,8 +37,13 @@ public class Trekkrutine {
                 alleTrekk.put(grunnlag, trekk);
             }
         }
+        return new HeleTabellen(alleTrekk, finnOverskytendeProsentForTabell(tabellnummer));
+    }
 
-        return new HeleTabellen(alleTrekk, tabellnummer.overskytendeProsent);
+    public static BigDecimal finnOverskytendeProsentForTabell(Tabellnummer tabellnummer) {
+        long trekkLav = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED,  300000);
+        long trekkHoy = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 1300000);
+        return  BigDecimal.valueOf(((double)trekkHoy - (double)trekkLav) / 10000).setScale(3, RoundingMode.HALF_UP);
     }
 
     private static long finnAvrundetTrekkgrunnlag(Periode periode, long trekkgrunnlag) {

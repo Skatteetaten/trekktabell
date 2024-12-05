@@ -1,11 +1,8 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
 
 public class Fradrag {
 
     static long beregnMinsteFradrag(Tabellnummer tabellnummer, long personInntektAar) {
-        if (tabellnummer.tabelltype == Tabelltype.PENSJONIST)
-            return beregnMinstefradragPensjon(personInntektAar);
-
         if (tabellnummer.tabelltype == Tabelltype.SJØ)
             return beregnMinstefradragSjo(personInntektAar);
 
@@ -24,21 +21,6 @@ public class Fradrag {
         }
         if (minstefradrag < Konstanter.ANV_LONNSFRADRAG) {
             minstefradrag = Konstanter.ANV_LONNSFRADRAG;
-        }
-        if (minstefradrag > personInntektAar) {
-            minstefradrag = personInntektAar;
-        }
-        return minstefradrag;
-    }
-
-    private static long beregnMinstefradragPensjon(long personInntektAar) {
-        long minstefradrag = Math.round((personInntektAar * Konstanter.ANV_MINSTE_FRAD_PROSENT_PENSJ) / 100);
-
-        if (minstefradrag > Konstanter.MAX_ANV_MINSTE_FRADRAG_PENSJ) {
-            minstefradrag = Konstanter.MAX_ANV_MINSTE_FRADRAG_PENSJ;
-        }
-        if (minstefradrag < Konstanter.MIN_ANV_MINSTE_FRADRAG) {
-            minstefradrag = Konstanter.MIN_ANV_MINSTE_FRADRAG;
         }
         if (minstefradrag > personInntektAar) {
             minstefradrag = personInntektAar;

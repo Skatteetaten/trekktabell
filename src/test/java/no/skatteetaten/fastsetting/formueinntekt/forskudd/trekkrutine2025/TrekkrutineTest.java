@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2024;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,17 +8,14 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Arrays;
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
 public class TrekkrutineTest {
 
     @Test
     public void skal_returnere_0_ved_trekkgrunnlag_lik_0() {
-        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 0L);
+        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_8000, Periode.PERIODE_1_MAANED, 0L);
         assertEquals(0L, beregnetTrekk);
     }
 
@@ -47,56 +44,15 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void overskytende_trekk_skal_vaere_storre_enn_0() throws Exception {
-        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
-            for (Periode periode : Periode.values()) {
-                for (double trekkgrunnlag = 1000L; trekkgrunnlag < 100000L; trekkgrunnlag += 166) {
-                    if (trekkgrunnlag > periode.maxTrekkgrunnlag) {
-                        long overskytendetTrekk = Skatteberegning
-                            .beregnOverskytendeTrekk(tabellnummer, periode, trekkgrunnlag);
-                        assertTrue(overskytendetTrekk > 0L);
-                    }
-                }
-            }
-        }
-    }
-
-    @Test
-    // Samme som over, men med streams
-    public void overskytende_trekk_skal_vaere_storre_enn_0_med_java8() throws Exception {
-        List<Tabellnummer> tabListe = Arrays.asList(Tabellnummer.values());
-        List<Periode> periodeListe = Arrays.asList(Periode.values());
-        List<Double> grunnlag = DoubleStream.iterate(1000, n -> n + 166)
-            .limit(1000)
-            .boxed()
-            .collect(Collectors.toList());
-
-        tabListe.stream()
-            .forEach(t -> {
-                periodeListe.stream()
-                    .forEach(p -> {
-                        grunnlag.stream()
-                            .forEach(g -> {
-                                if (g > p.maxTrekkgrunnlag) {
-                                    long overskytendeTrekk = Skatteberegning
-                                        .beregnOverskytendeTrekk(t, p, g);
-                                    assertTrue(overskytendeTrekk > 0L);
-                                }
-                            });
-                    });
-            });
-    }
-
-    @Test
     public void kontrollerBeregningAvLavGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftLavSats = Konstanter.beregnLavGrenseTrygdeavgift();
-        assertEquals(87500L, grenseTrygdeavgiftLavSats);
+        assertEquals(125188L, grenseTrygdeavgiftLavSats);
     }
 
     @Test
     public void kontrollerBeregningAvHoyGrenseTrygdeavgift() throws Exception {
         long grenseTrygdeavgiftHoySats = Konstanter.beregnHoyGrenseTrygdeavgift();
-        assertEquals(101235L, grenseTrygdeavgiftHoySats);
+        assertEquals(144003L, grenseTrygdeavgiftHoySats);
     }
 
     @Test
@@ -106,7 +62,7 @@ public class TrekkrutineTest {
                 HeleTabellen heleTabellen = Trekkrutine
                     .beregnHeleTabellen(tabellnummer, periode);
                 assertTrue(heleTabellen.alleTrekk.size() > 100);
-                assertTrue(heleTabellen.overskytendeProsent > 30);
+                assertTrue(heleTabellen.overskytendeProsent.doubleValue() > 30);
             }
         }
     }
@@ -123,22 +79,43 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerEndredeOverskytendeProsenter() throws Exception {
-        HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED);
-        assertEquals(heleTabellen.overskytendeProsent, 54);
-        heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_7300, Periode.PERIODE_1_MAANED);
-        assertEquals(heleTabellen.overskytendeProsent, 54);
-        heleTabellen = Trekkrutine.beregnHeleTabellen(Tabellnummer.TABELL_6300, Periode.PERIODE_1_MAANED);
-        assertEquals(heleTabellen.overskytendeProsent, 50);
+    public void merFradragGirSnillereTrekkTest() {
+        Tabellnummer forrigeTabellnummer = null;
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            if (tabellnummer.name().startsWith("TABELL_8") && tabellnummer.tabelltype.equals(Tabelltype.VANLIG)) {
+                if (forrigeTabellnummer != null) {
+                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    assertTrue(trekk1 > trekk2);
+                }
+                forrigeTabellnummer = tabellnummer;
+            }
+        }
     }
 
     @Test
-    public void kontrollerAvrlundingVedOverskytedeTrekk() throws Exception {
-        long beregnetTrekk = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109700);
-        long beregnetTrekk2 = Trekkrutine.beregnTabelltrekk(Tabellnummer.TABELL_7100, Periode.PERIODE_1_MAANED, 109799);
-        assertEquals(beregnetTrekk, beregnetTrekk2);
+    public void merTilleggGirMerTrekkTest() {
+        Tabellnummer forrigeTabellnummer = null;
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            if (tabellnummer.name().startsWith("TABELL_9") && tabellnummer.tabelltype.equals(Tabelltype.VANLIG)) {
+                if (forrigeTabellnummer != null) {
+                    long trekk1 = Trekkrutine.beregnTabelltrekk(forrigeTabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    long trekk2 = Trekkrutine.beregnTabelltrekk(tabellnummer, Periode.PERIODE_1_MAANED, 80000);
+                    assertTrue(trekk1 < trekk2);
+                }
+                forrigeTabellnummer = tabellnummer;
+            }
+        }
     }
 
+    @Test
+    public void finnNyOverskytendeProsentTest() {
+        for (Tabellnummer tabellnummer : Tabellnummer.values()) {
+            BigDecimal overskytendeProsentForTabell = Trekkrutine.finnOverskytendeProsentForTabell(tabellnummer);
+            assertTrue(overskytendeProsentForTabell.doubleValue() > 35);
+            System.out.println("Tabell " + tabellnummer.name() + " - overskytende prosent = " + overskytendeProsentForTabell);
+        }
+    }
 
     @Test
     @Ignore
@@ -215,8 +192,8 @@ public class TrekkrutineTest {
                         for (Long grl : alleTrekk.keySet()) {
                             Long trekk = alleTrekk.get(grl);
                             fw.write(
-                                tabellnr.name().substring(7, 11) + per + tabType + String.format("%05d", grl) + String
-                                    .format("%05d", trekk) + "\r\n");
+                                tabellnr.name().substring(7, 11) + per + tabType + String.format("%06d", grl) + String
+                                    .format("%06d", trekk) + "\r\n");
                             teller++;
                         }
                     }
@@ -250,9 +227,7 @@ public class TrekkrutineTest {
     }
 
     private char finnTabelltype(Tabelltype tabelltype) {
-        if (tabelltype == Tabelltype.PENSJONIST) {
-            return '1';
-        }
+        //siden pensjonisttabellene ikke lenger eksisterer returneres alltid 0 her
         return '0';
     }
 
@@ -266,9 +241,6 @@ public class TrekkrutineTest {
         return true;
     }
     private boolean aktuellPeriode(Tabellnummer tabellnummer, Periode periode) {
-        if (tabellnummer.tabelltype == Tabelltype.PENSJONIST) {
-            return periode == Periode.PERIODE_1_MAANED;
-        }
         if (tabellnummer.tabelltype == Tabelltype.SJØ) {
             return periode == Periode.PERIODE_1_MAANED || periode == Periode.PERIODE_14_DAGER ||
                 periode == Periode.PERIODE_1_UKE;
