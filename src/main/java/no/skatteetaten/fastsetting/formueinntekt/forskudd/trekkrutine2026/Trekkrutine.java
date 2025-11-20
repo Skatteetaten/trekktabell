@@ -3,6 +3,7 @@ package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Trekkrutine {
 
@@ -24,7 +25,7 @@ public class Trekkrutine {
     }
 
     public static HeleTabellen beregnHeleTabellen(Tabellnummer tabellnummer, Periode periode) {
-        LinkedHashMap<Long, Long> alleTrekk = new LinkedHashMap<>();
+        Map<Long, Long> alleTrekk = new LinkedHashMap<>();
 
         for (long grunnlag = 0; grunnlag <= periode.maxTrekkgrunnlag; grunnlag += periode.avrunding) {
             long trekk = beregnTabelltrekk(tabellnummer, periode, grunnlag);
@@ -66,7 +67,7 @@ public class Trekkrutine {
     private static long beregnSkatt(Tabellnummer tabellnummer, double personInntektAar, double alminneligInntektAar) {
         return Skatteberegning.beregnKommuneskatt(alminneligInntektAar)
                 + Skatteberegning.beregnFelleseskatt(tabellnummer, alminneligInntektAar)
-                + Skatteberegning.beregnTrinnskatt(tabellnummer, personInntektAar)
+                + Skatteberegning.beregnTrinnskatt(personInntektAar)
                 + Skatteberegning.beregnTrygdeavgift(tabellnummer, personInntektAar);
     }
 

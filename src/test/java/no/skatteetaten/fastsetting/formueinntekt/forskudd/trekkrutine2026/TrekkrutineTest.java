@@ -3,13 +3,13 @@ package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.math.BigDecimal;
-import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 public class TrekkrutineTest {
 
@@ -20,7 +20,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void trekket_skal_vaere_mindre_eller_lik_trekkgrunnlag2() throws Exception {
+    public void trekket_skal_vaere_mindre_eller_lik_trekkgrunnlag2() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 for (long trekkgrunnlag = 10L; trekkgrunnlag < 1000L; trekkgrunnlag += 166) {
@@ -32,7 +32,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void skal_ikke_ha_trygdeavgift() throws Exception {
+    public void skal_ikke_ha_trygdeavgift() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (double inntekt = 10d; inntekt < 1000000L; inntekt += 16666) {
                 if (tabellnummer.ikkeTrygdeavgift()) {
@@ -44,19 +44,19 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerBeregningAvLavGrenseTrygdeavgift() throws Exception {
+    public void kontrollerBeregningAvLavGrenseTrygdeavgift() {
         long grenseTrygdeavgiftLavSats = Konstanter.beregnLavGrenseTrygdeavgift();
         assertEquals(125188L, grenseTrygdeavgiftLavSats);
     }
 
     @Test
-    public void kontrollerBeregningAvHoyGrenseTrygdeavgift() throws Exception {
+    public void kontrollerBeregningAvHoyGrenseTrygdeavgift() {
         long grenseTrygdeavgiftHoySats = Konstanter.beregnHoyGrenseTrygdeavgift();
         assertEquals(143175L, grenseTrygdeavgiftHoySats);
     }
 
     @Test
-    public void kontrollerHeleTabellenAlle() throws Exception {
+    public void kontrollerHeleTabellenAlle() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 HeleTabellen heleTabellen = Trekkrutine
@@ -68,7 +68,7 @@ public class TrekkrutineTest {
     }
 
     @Test
-    public void kontrollerAtMaxEttTrekkgrunnlagMed0ITrekkVedHeleTabellen() throws Exception {
+    public void kontrollerAtMaxEttTrekkgrunnlagMed0ITrekkVedHeleTabellen() {
         for (Tabellnummer tabellnummer : Tabellnummer.values()) {
             for (Periode periode : Periode.values()) {
                 HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnummer, periode);
@@ -128,7 +128,7 @@ public class TrekkrutineTest {
                 HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnr, periode);
 
                 fw.write("TABELLNR: " + tabellnr.name() + " - PERIODE: " + periode.name() + "\n");
-                LinkedHashMap<Long, Long> alleTrekk = heleTabellen.alleTrekk;
+                Map<Long, Long> alleTrekk = heleTabellen.alleTrekk;
 
                 for (Long grl : alleTrekk.keySet()) {
                     Long trekk = alleTrekk.get(grl);
@@ -154,14 +154,13 @@ public class TrekkrutineTest {
 
                 HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnr, periode);
                 char per = finnPeriode(periode);
-                char tabType = finnTabelltype(tabellnr.tabelltype);
 
-                LinkedHashMap<Long, Long> alleTrekk = heleTabellen.alleTrekk;
+                Map<Long, Long> alleTrekk = heleTabellen.alleTrekk;
 
                 for (Long grl : alleTrekk.keySet()) {
                     Long trekk = alleTrekk.get(grl);
                     fw.write(
-                        "1" + tabellnr.name().substring(7, 11) + per + tabType + String.format("%06d", grl) + String
+                        "1" + tabellnr.name().substring(7, 11) + per + 0 + String.format("%06d", grl) + String
                             .format("%06d", trekk) + "\n");
                     teller++;
                 }
@@ -185,14 +184,13 @@ public class TrekkrutineTest {
                     if (aktuellPeriode(tabellnr, periode)) {
                         HeleTabellen heleTabellen = Trekkrutine.beregnHeleTabellen(tabellnr, periode);
                         char per = finnPeriode(periode);
-                        char tabType = finnTabelltype(tabellnr.tabelltype);
 
-                        LinkedHashMap<Long, Long> alleTrekk = heleTabellen.alleTrekk;
+                        Map<Long, Long> alleTrekk = heleTabellen.alleTrekk;
 
                         for (Long grl : alleTrekk.keySet()) {
                             Long trekk = alleTrekk.get(grl);
                             fw.write(
-                                tabellnr.name().substring(7, 11) + per + tabType + String.format("%06d", grl) + String
+                                tabellnr.name().substring(7, 11) + per + 0 + String.format("%06d", grl) + String
                                     .format("%06d", trekk) + "\r\n");
                             teller++;
                         }
@@ -224,11 +222,6 @@ public class TrekkrutineTest {
             return '7';
         }
         throw new IllegalStateException("Ugyldig periode !");
-    }
-
-    private char finnTabelltype(Tabelltype tabelltype) {
-        //siden pensjonisttabellene ikke lenger eksisterer returneres alltid 0 her
-        return '0';
     }
 
     private boolean aktuellTabell(Tabellnummer tabellnummer) {

@@ -26,7 +26,6 @@ public class Konstanter {
             PROSENT_TRINN1 = 1.7d,
             PROSENT_TRINN2 = 4.0d,
             PROSENT_TRINN3 = 13.7d,
-            PROSENT_TRINN3_FINNMARK = 13.7d,
             PROSENT_TRINN4 = 16.7d,
             PROSENT_TRINN5 = 17.7d,
             FELLES_SKATT_VANLIG = 8.25d,
