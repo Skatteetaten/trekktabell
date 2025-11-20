@@ -1,10 +1,9 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 
 public enum Tabellnummer {
     /*
        Når argument nr 2 er et positivt tall, er det et tabellfradrag; når negativt er det et tabelltillegg.
      */
-// Nye tabellnr fra 2025
     TABELL_8000(Tabelltype.VANLIG,     0L, Konstanter.KLASSE1_VANLIG, "Høy", false),
     TABELL_8010(Tabelltype.VANLIG, 10000L, Konstanter.KLASSE1_VANLIG, "Høy", false),
     TABELL_8020(Tabelltype.VANLIG, 20000L, Konstanter.KLASSE1_VANLIG, "Høy", false),

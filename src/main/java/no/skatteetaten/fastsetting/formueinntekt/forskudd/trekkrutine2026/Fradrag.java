@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 
 public class Fradrag {
 
