@@ -20,14 +20,14 @@ public class Konstanter {
             MAX_MINSTE_FRADRAG = 95700L,
             LONNSFRADRAG = 0L,
             ANV_LONNSFRADRAG = 0L,
-            MAX_SJO_FRADRAG = 83000L;
+            MAX_SJO_FRADRAG = 86300L;
 
     static final double
             PROSENT_TRINN1 = 1.7d,
             PROSENT_TRINN2 = 4.0d,
             PROSENT_TRINN3 = 13.7d,
-            PROSENT_TRINN4 = 16.7d,
-            PROSENT_TRINN5 = 17.7d,
+            PROSENT_TRINN4 = 16.8d,
+            PROSENT_TRINN5 = 17.8d,
             FELLES_SKATT_VANLIG = 8.25d,
             FELLES_SKATT_FINNMARK = 4.75d,
             SKATTORE = 13.75d,
