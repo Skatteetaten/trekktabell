@@ -4,7 +4,7 @@ public class Konstanter {
 
     static final long
             PERSONFRADRAG = 114540L, // Personfradrag
-            PERSONFRADRAG_FINNMARK = 159210L, // Personfradrag + finnmarksfradrag
+            PERSONFRADRAG_FINNMARK = 159540L, // Personfradrag + finnmarksfradrag
             TRINN1 = 226100L,
             TRINN2 = 318300L,
             TRINN3 = 725050L,
