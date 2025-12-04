@@ -3,8 +3,8 @@ package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 public class Konstanter {
 
     static final long
-            KLASSE1_VANLIG = 114210L,
-            KLASSE1_FINNMARK = 159210L, // Personfradrag + finnmarksfradrag
+            PERSONFRADRAG = 114540L, // Personfradrag
+            PERSONFRADRAG_FINNMARK = 159210L, // Personfradrag + finnmarksfradrag
             TRINN1 = 226100L,
             TRINN2 = 318300L,
             TRINN3 = 725050L,
