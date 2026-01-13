@@ -23,7 +23,8 @@ def overrides = [
     [branch: '2023', versionHint: '2023', strict: true],
     [branch: '2024', versionHint: '2024', strict: true],
     [branch: '2025', versionHint: '2025', strict: true],
-    [branch: 'master', versionHint: '2025', strict: true]
+    [branch: '2026', versionHint: '2026', strict: true],
+    [branch: 'master', versionHint: '2026', strict: true]
   ]
 ]
 

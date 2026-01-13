@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 
 public class Fradrag {
 
@@ -51,7 +51,7 @@ public class Fradrag {
             return 0L;
 
         long standardFradrag = Math.round((personInntektAar * Konstanter.STFRADRAG_PROSENT) / 100);
-        return (standardFradrag > Konstanter.MAX_STFRADRAG) ? Konstanter.MAX_STFRADRAG : standardFradrag;
+        return Math.min(standardFradrag, Konstanter.MAX_STFRADRAG);
     }
 
     static long beregnSjoFradrag(Tabellnummer tabellnummer, long personInntektAar) {
@@ -59,7 +59,7 @@ public class Fradrag {
             return 0L;
 
         long sjoFradrag = Math.round((personInntektAar * Konstanter.SJO_PROSENT) / 100);
-        return (sjoFradrag > Konstanter.MAX_SJO_FRADRAG) ? Konstanter.MAX_SJO_FRADRAG : sjoFradrag;
+        return Math.min(sjoFradrag, Konstanter.MAX_SJO_FRADRAG);
     }
 
 }

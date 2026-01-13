@@ -1,4 +1,4 @@
-package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2025;
+package no.skatteetaten.fastsetting.formueinntekt.forskudd.trekkrutine2026;
 
 public class Skatteberegning {
 
@@ -16,16 +16,9 @@ public class Skatteberegning {
                 Math.round(alminneligInntektAar * Konstanter.FELLES_SKATT_VANLIG / 100);
     }
 
-    static long beregnTrinnskatt(Tabellnummer tabellnummer, double personInntektAar) {
+    static long beregnTrinnskatt(double personInntektAar) {
         if (personInntektAar < Konstanter.TRINN1) {
             return 0L;
-        }
-
-        double prosentTrinn3;
-        if (tabellnummer.tabelltype == Tabelltype.FINNMARK) {
-            prosentTrinn3 = Konstanter.PROSENT_TRINN3_FINNMARK;
-        } else {
-            prosentTrinn3 = Konstanter.PROSENT_TRINN3;
         }
 
         if (personInntektAar < Konstanter.TRINN2) {
@@ -37,13 +30,13 @@ public class Skatteberegning {
         }
 
         if (personInntektAar < Konstanter.TRINN4) {
-            return beregnTrinnskattHvisInntektUnderTrinn4(personInntektAar, prosentTrinn3);
+            return beregnTrinnskattHvisInntektUnderTrinn4(personInntektAar);
         }
 
         if (personInntektAar < Konstanter.TRINN5) {
-            return beregnTrinnskattHvisInntektUnderTrinn5(personInntektAar, prosentTrinn3);
+            return beregnTrinnskattHvisInntektUnderTrinn5(personInntektAar);
         }
-        return beregnTrinnskattHvisInntektOverTrinn5(personInntektAar, prosentTrinn3);
+        return beregnTrinnskattHvisInntektOverTrinn5(personInntektAar);
     }
 
     private static long beregnTrinnskattHvisInntektUnderTrinn2(double personInntektAar) {
@@ -55,23 +48,23 @@ public class Skatteberegning {
                 + ((personInntektAar - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100));
     }
 
-    private static long beregnTrinnskattHvisInntektUnderTrinn4(double personInntektAar, double prosentTrinn3) {
+    private static long beregnTrinnskattHvisInntektUnderTrinn4(double personInntektAar) {
         return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                 + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
-                + ((personInntektAar - Konstanter.TRINN3) * prosentTrinn3 / 100));
+                + ((personInntektAar - Konstanter.TRINN3) * Konstanter.PROSENT_TRINN3 / 100));
     }
 
-    private static long beregnTrinnskattHvisInntektUnderTrinn5(double personInntektAar, double prosentTrinn3) {
+    private static long beregnTrinnskattHvisInntektUnderTrinn5(double personInntektAar) {
         return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
             + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
-            + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
+            + ((Konstanter.TRINN4 - Konstanter.TRINN3) * Konstanter.PROSENT_TRINN3 / 100)
             + ((personInntektAar - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100));
     }
 
-    private static long beregnTrinnskattHvisInntektOverTrinn5(double personInntektAar, double prosentTrinn3) {
+    private static long beregnTrinnskattHvisInntektOverTrinn5(double personInntektAar) {
         return Math.round(((Konstanter.TRINN2 - Konstanter.TRINN1) * Konstanter.PROSENT_TRINN1 / 100)
                 + ((Konstanter.TRINN3 - Konstanter.TRINN2) * Konstanter.PROSENT_TRINN2 / 100)
-                + ((Konstanter.TRINN4 - Konstanter.TRINN3) * prosentTrinn3 / 100)
+                + ((Konstanter.TRINN4 - Konstanter.TRINN3) * Konstanter.PROSENT_TRINN3 / 100)
                 + ((Konstanter.TRINN5 - Konstanter.TRINN4) * Konstanter.PROSENT_TRINN4 / 100)
                 + ((personInntektAar - Konstanter.TRINN5) * Konstanter.PROSENT_TRINN5 / 100));
     }
