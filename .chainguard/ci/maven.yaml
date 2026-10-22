@@ -1,0 +1,8 @@
+version: 1
+checks:
+  build:
+    network:
+      egress: [repo.maven.apache.org]
+    steps:
+    - cmd: mvn -B package --file pom.xml
+      name: Build with Maven

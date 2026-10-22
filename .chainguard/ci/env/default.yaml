@@ -1,0 +1,12 @@
+version: 1
+environment:
+  # Every check VM starts from a minimal BusyBox base, so list what checks need.
+  packages:
+  - bash
+  - git
+  - openjdk-17
+  - maven
+  vars:
+    JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
+    # /tmp is held in memory; use the VM's disk for temporary files instead.
+    TMPDIR: /var/tmp

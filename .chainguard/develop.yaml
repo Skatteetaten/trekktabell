@@ -1,0 +1,2 @@
+version: 1
+from: .chainguard/ci/maven.yaml
