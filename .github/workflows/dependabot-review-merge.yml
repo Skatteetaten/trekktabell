@@ -1,10 +1,11 @@
 name: Dependabot review and merge
 
-# Runs on pull_request_target because Dependabot-triggered `pull_request` runs get a
-# read-only GITHUB_TOKEN and no access to Actions secrets. Nothing from the head branch
-# is ever checked out or executed here — only the GitHub API is used.
+# Dependabot opens its PRs from branches in this repository, so a `pull_request` run
+# gets the write permissions declared below and access to Actions secrets. The job is
+# gated to dependabot[bot] PRs in this repository, and nothing from the head branch is
+# ever checked out or executed here — only the GitHub API is used.
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
 
 permissions:
