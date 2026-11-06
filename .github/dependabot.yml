@@ -27,6 +27,12 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+    # init and analyze must stay on the same codeql-action version, so update them together.
+    groups:
+      codeql-action:
+        patterns:
+          - "github/codeql-action"
+          - "github/codeql-action/*"
 
   - package-ecosystem: "maven" # See documentation for possible values
     directory: "/" # Location of package manifests
